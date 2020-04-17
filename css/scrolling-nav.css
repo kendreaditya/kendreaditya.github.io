@@ -1,0 +1,93 @@
+/*!
+ * Start Bootstrap - Scrolling Nav (https://startbootstrap.com/template-overviews/scrolling-nav)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/LICENSE)
+ */
+
+
+header {
+  padding: 156px 0 100px;
+}
+
+section {
+  padding: 100px 0;
+}
+
+hr {
+  background-color: white;
+}
+
+#about-pic {
+  border-radius: 50%;
+  border: 5px solid white;
+  height: 15%;
+  width: 15%;
+}
+
+#about {
+  background-image: url(../images/backgroundAbout.png);
+  background-size: cover
+}
+
+.job-title{
+  padding-top:10px;
+}
+
+.job-period {
+  padding-top: 12px;
+  float: right;
+}
+
+.job-description {
+  padding-top: 7px !important;
+}
+
+.timeline{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.timeline:before{
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: #292b2c;
+}
+
+.timeline ul {
+  margin: 0;
+  padding: 0;
+}
+
+.timeline ul li {
+  list-style: none;
+  position: relative;
+  padding: 0px 40px;
+  box-sizing: border-box;
+}
+
+.job-section {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  border: 1px solid #eee;
+  background-color: #f0f0f0;
+  padding: 10px 10px;
+  border-radius: 25px;
+  text-align: left;
+}
+
+.timeline .job-description:before {
+  content: "";
+  border-radius: 50%;
+  border: 5px solid white;
+  position: absolute;
+  top: 30px;
+  left: -12px;
+  width: 25px;
+  height: 25px;
+  background-color: #292b2c;
+}
