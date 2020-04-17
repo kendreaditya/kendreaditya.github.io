@@ -8,17 +8,15 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Scrolling Nav - Start Bootstrap Template</title>
+  <title>Aditya Kendre</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
   <link href="css/scrolling-nav.css" rel="stylesheet">
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="typeWriter()">
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -51,7 +49,20 @@
       <img src="images\adityakendre.jpg" id="about-pic">
       <h1>Aditya Kendre</h1>
       <hr>
-      <p class="lead">Result-oriented high school student with proven communication, creative thinking, and critical thinking skills. Aiming to leverage my abilities to successfully fill the Tech/Web Development Intern role at The Sanga Initiative.</p>
+      <p id="about-me" class="lead"></p>
+      <script>
+        var i = 0;
+        var txt = 'Result-oriented high school student with proven communication, creative thinking, and critical thinking skills. Aiming to leverage my abilities to successfully fill the Tech/Web Development Intern role at The Sanga Initiative.'; /* The text */
+        var speed = 25;
+        
+        function typeWriter() {
+          if (i < txt.length) {
+            document.getElementById("about-me").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+          }
+        }
+        </script>
     </div>
   </header>
 
@@ -67,10 +78,9 @@
                   <h3 class="job-title">Committee Member <small class="job-company">ISKCON of Harrisburg Youth Commitee</small></h3>
                   <ul class="job-description">
                     <li><p>
-                      Implement program plans by ordering needed materials, schdeuling programs, or handling other administraive details.  
-                    </p></li>
+                      Implement program plans by ordering needed materials, scheduling programs, or handling other administrative details.                     </p></li>
                     <li><p>
-                      Plan or conduct conferences dealing with the interperation of religious ideas or convictions.  
+                      Plan or conduct conferences dealing with the interpretation of religious ideas or convictions.  
                     </p></li>
                     <li><p>
                       Participate in denominational activities aimed at goals such as promoting interfaith understanding or providing aid to newcomers.
@@ -84,7 +94,7 @@
                   <h3 class="job-title">Coordinator <small class="job-company">Science Olympiad</small></h3>
                   <ul class="job-description">
                     <li><p>
-                      Monitor event activities to ensure compliance with applicable regulations and laws, satisfaction of participants, and resolution of any problems that arise.                  </p></li>
+                      Monitor event activities to ensure compliance with applicable regulations and laws, the satisfaction of participants, and resolution of any problems that arise.                  </p></li>
                     <li><p>
                       Confer with staff at a chosen event site to coordinate details.
                     </p></li>
@@ -98,7 +108,7 @@
                       Coordinate services for events, such as accommodation and transportation for participants, facilities, catering, signage, displays, special needs requirements, and printing.
                     </p></li>
                     <li><p>
-                      Trading for competion tests, preparing test material for Invitational tournaments, maining communication between other Science Olympiad teams.
+                      Trading for competition tests, preparing test material for Invitational tournaments, maintaining communication between other Science Olympiad teams.
                     </p></li>
                   </ul>
                   <h7 class="job-period"><i>April 2020 - Current</i></h7>
@@ -113,11 +123,40 @@
 
   <section id="education" class="bg-light">
     <div class="container">
+      <h2 class="section-title text-center">Education</h2>
       <div class="row">
-        <div class="col-lg-10 mx-auto">
-          <h2 class="text-center">Education</h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+        <div class="col-lg-4 col-md-6 ">
+          <div class="education-title single-feature mb-30">
+            <div class="flex-row pb-20">
+              <h4>High School Diploma</h4>
+            </div>
+            <h5 class="education-location text-center"><small>Cumberland Valley High School</small></h5>
+            <h5 class="education-location text-center"><small>2017-2021</small></h5>
+            <hr class="education-hr">
+            <p class="education-learned">Over the 3-year Computer Science course, I learned the basiscs of Python, C++, and Java. Which included many topics like object-oriiented programming, inheritance, and data structures.</p>
+          </div>							
         </div>
+        <div class="col-lg-4 col-md-6 ">
+          <div class="education-title single-feature mb-30">
+            <div class="flex-row pb-20">
+              <h4>PyTorch for Deep Learning and Computer Vision</h4>
+            </div>
+            <h5 class="education-location text-center"><small>Udemy</small></h5>
+            <h5 class="education-location text-center"><small>2019</small></h5>
+            <hr class="education-hr">
+            <p class="education-learned"> I learned how to implement Machine and Deep Learning applications with PyTorch, and solve complex problems in Computer Vision by harnessing highly sophisticated pre-trained models.</p>
+          </div>							
+        </div>
+        <div class="col-lg-4 col-md-6 ">
+          <div class="education-title single-feature mb-30">
+            <div class="flex-row pb-20">
+              <h4>The Complete Web Developer Course</h4>
+            </div>
+            <h5 class="education-location text-center"><small>Udemy</small></h5>
+            <h5 class="education-location text-center"><small>2015</small></h5>
+            <hr class="education-hr">
+            <p class="education-learned">In this course, I learned how to make beautiful, interactive websites, along with mobile applications. This included, HTML, CSS, and Javascript.</p>			
+          </div>	
       </div>
     </div>
   </section>
@@ -127,7 +166,38 @@
       <div class="row">
         <div class="col-lg-10 mx-auto">
           <h2 class="text-center">Skills</h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+          <div class="skill-progressbars">                   
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                </div>
+                <span class="progress-type">HTML / HTML5</span>
+                <span class="progress-completed">50%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                </div>
+                <span class="progress-type">Python</span>
+                <span class="progress-completed">85%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                </div>
+                <span class="progress-type">Java</span>
+                <span class="progress-completed">50%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                </div>
+                <span class="progress-type">C++</span>
+                <span class="progress-completed">30%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                </div>
+                <span class="progress-type">CSS / CSS3</span>
+                <span class="progress-completed">50%</span>
+            </div>
+        </div>
         </div>
       </div>
     </div>
@@ -138,28 +208,51 @@
       <div class="row">
         <div class="col-lg-10 mx-auto">
           <h2 class="text-center">Contact Me</h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+          <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact me directly.</p>
+          <div class="row">
+              <div class="col-lg-10 mx-auto">
+                  <form>
+                      <div class="row">
+                          <div class="col-md-6">
+                                  <input type="text" id="name" name="name" class="form-control">
+                                  <label for="name" class="">Your name</label>
+                          </div>
+                          <div class="col-md-6">
+                                  <input type="text" id="email" name="email" class="form-control">
+                                  <label for="email" class="">Your email</label>
+                            </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                                  <input type="text" id="subject" name="subject" class="form-control">
+                                  <label for="subject" class="">Subject</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="md-form">
+                                  <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                                  <label for="message">Your message</label>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; The Supreme Lord</p>
     </div>
-    <!-- /.container -->
   </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom JavaScript for this theme -->
   <script src="js/scrolling-nav.js"></script>
 
 </body>
