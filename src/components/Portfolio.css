@@ -1,0 +1,18 @@
+.slide {
+  transform: scale(0.7);
+  transition: transform 300ms;
+  opacity: 0.5;
+}
+
+.project-title {
+  text-align: center;
+  margin: auto;
+  margin-top: 1em;
+}
+
+.project-discription {
+  text-align: center;
+}
+
+.fa {
+}
