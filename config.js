@@ -1,4 +1,4 @@
-{
+export const config = {
     "username": "kendreaditya",
     "name": "Aditya Kendre",
     "linkedin": "linkedin.com/in/kendreaditya",

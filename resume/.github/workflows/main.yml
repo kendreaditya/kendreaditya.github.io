@@ -1,0 +1,30 @@
+# -------------------------
+# Github Actions for Resume Renderer
+# Author : Kunalan Kevin Subagaran
+# Based off of: https://github.com/KnlnKS/resume/
+# ------------------------
+
+name: Build LaTeX document
+on: [push]
+jobs:
+  Build_LaTeX_Resume:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+
+      - name: Compile Resume
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: resume.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
+
+      - name: Commit Resume
+        run: |
+          mv resume.pdf Aditya_Kendre_resume.pdf
+          git config --global user.name "kendreaditya/resume"
+          git config --global user.email "kendreaditya@gmail.com"
+          git add .
+          git commit -m '📄🔨 Generate Resume' || echo
+          git push
