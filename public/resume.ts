@@ -119,7 +119,7 @@ const projects: Project[] = [
         }
       ],
       "description": [
-        "trained a ai model (CNN+transformer) to predict abnormalities and arrhythmias in heart sounds and created an app to records the heart sounds and creates a prediction from them"
+        "As an ISEF Finalist, I led the development of a pioneering heart sound abnormality detection app, improving accuracy by 5%. Managed project from model (CNN+transformer) creation to app development using Figma and React Native. Recognized globally among 1,800 finalists for the most prestigious engineering fair, representing excellence in scientific innovation."
       ]
     },
     {
