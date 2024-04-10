@@ -37,3 +37,16 @@ body {
     text-wrap: balance;
   }
 }
+
+@keyframes line-anim {
+  to {
+    stroke-dashoffset: 0;
+  }
+
+}
+
+#wave path {
+  stroke-dasharray: 620px;
+  stroke-dashoffset: 620px;
+  animation: line-anim 3s ease forwards infinite;
+}
