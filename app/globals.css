@@ -25,7 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
   /* all words lowercase; */
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
 }
 
 #blob {

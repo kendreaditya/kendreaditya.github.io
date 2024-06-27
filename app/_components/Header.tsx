@@ -1,44 +1,76 @@
 import Image from 'next/image';
+import StyledLink from './StyledLink';
+import { Linkedin, Github, GraduationCap, Mail, } from "lucide-react";
+
+const Button = ({ Icon, href}: { Icon: typeof Linkedin, href: string} ) => {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center space-x-1"
+      >
+        <button className="flex items-center space-x-1 rounded-md p-1.5 hover:scale-105 shadow-[0_4px_4px_rgba(0,0,0,0.25),inset_0_3px_0_-1.5px_rgba(60,59,62,0.75)] bg-gradient-to-b from-[#242427] to-[#19191C]"
+          style={{ filter: "drop-shadow(0 25px 25px rgb(255 255 255 / 0.15))" }}
+        >
+          <Icon className="w-5 h-5" />
+        </button>
+      </a>
+    );
+}
 
 export default function Header() {
     return (
-        <>
+      <div className="items-start justify-start w-full ">
         <div
-            id="blob"
-            className="animate-pulse relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]"
+          id="blob"
+          className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]"
         ></div>
-        <div className="flex flex-col md:flex-row items-center justify-center space-x-3">
-            <Image
+        <div className="flex space-x-3 md:flex-row">
+          <Image
             src="/akendre.jpeg"
             alt="Aditya Kendre"
-            className="rounded-full animate-bounce"
-            width={56}
-            height={56}
+            className="w-16 h-16 rounded-full animate-bounce"
+            width={64}
+            height={64}
             priority
             draggable={false}
-            />
-            <h1 className="font-bold text-5xl text-center">Aditya Kendre</h1>
-        </div>
-        <p
-            id="mission-statment"
-            className="text-sm font-normal italic text-gray-500 text-center"
-        >
-            jīve doyā, kṛṣṇa-nām—sarva-dharma-sār
-        </p>
-        <div className="flex flex-col md:flex-row items-center justify-center space-x-3">
-            <a
-            href="https://www.linkedin.com/in/kendreaditya/"
-            className="underline"
+          />
+          <div className="items-start justify-start">
+            <h1 className="text-lg font-bold">Aditya Kendre</h1>
+
+            <p
+              id="mission-statment"
+              className="mb-1 text-sm italic font-normal text-gray-500"
             >
-            /in/kendreaditya
-            </a>
-            <a href="https://www.github.com/kendreaditya" className="underline">
-            /github/kendreaditya
-            </a>
-            <a href="mailto:adinkendre@gmail.com" className="underline">
-            /gmail/adinkendre
-            </a>
+              jīve doyā, kṛṣṇa-nām—sarva-dharma-sār
+              {/* <StyledLink
+                href="https://en.wikipedia.org/wiki/Bhaktivinoda_Thakur"
+              >Bhaktivionda Thakur</StyledLink> */}
+            </p>
+            <p>
+              Scaling Saas + AI ideas to the moon while learning and building
+              cool things in NYC and SF. Founding team Semant, Gaudiya
+              Kirtan.
+            </p>
+
+            <div className="flex flex-row my-2 space-x-2">
+              <Button
+                Icon={Linkedin}
+                href="https://www.linkedin.com/in/kendreaditya/"
+              />
+              <Button
+                Icon={Github}
+                href="https://www.github.com/kendreaditya"
+              />
+              <Button
+                Icon={GraduationCap}
+                href="https://scholar.google.com/citations?user=sx_8qkEAAAAJ&hl=en"
+              />
+              <Button Icon={Mail} href="mailto:adinkendre@gmail.com" />
+            </div>
+          </div>
         </div>
-      </>
+      </div>
     );
 }

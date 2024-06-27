@@ -1,18 +1,20 @@
 import Header from "./_components/Header";
-import Bio from "./_components/Bio";
 import Projects from "./_components/Projects";
 import Experinces from "./_components/Experiences";
+import Publications from "./_components/Publications";
+import Education from "./_components/Education";
 
 export default function Home() {
   return (
-    <main className="max-w-6xl flex flex-col items-center justify-center md:p-24 p-8 m-auto">
+    <main className="max-w-5xl flex flex-col items-center justify-center md:p-24 p-8 m-auto">
       <Header />
-      <Bio />
       <Projects />
       <Experinces />
+      <Publications />
+      <Education />
 
       {/* <--- Noise Filter --> */}
-      <svg>
+      <svg className="">
         <filter id="noiseFilter">
           <feTurbulence
             type="fractalNoise"
