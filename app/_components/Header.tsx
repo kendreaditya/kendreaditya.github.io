@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import StyledLink from './StyledLink';
 import { Linkedin, Github, GraduationCap, Mail, } from "lucide-react";
 
 const Button = ({ Icon, href}: { Icon: typeof Linkedin, href: string} ) => {
