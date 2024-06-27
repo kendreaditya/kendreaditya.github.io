@@ -20,12 +20,12 @@ const publicationNode = (publication: Publication) => (
 export default function Publications() {
     return (
       <>
-          <h2 className="items-center justify-center w-full m-3 mt-12 text-base font-semibold text-left text-white">
-            <BookMarked className="inline w-5 mr-2"/>
-            Selected Publications
-          </h2>
-        <div className="grid grid-flow-row grid-cols-3 gap-3">
-          {publications.map(e => publicationNode(e))}
+        <h2 className="items-center justify-center w-full m-3 mt-12 text-base font-semibold text-left text-white">
+          <BookMarked className="inline w-5 mr-2" />
+          Selected Publications
+        </h2>
+        <div className="grid grid-flow-row grid-cols-1 gap-3 md:grid-cols-2">
+          {publications.map((e) => publicationNode(e))}
         </div>
       </>
     );

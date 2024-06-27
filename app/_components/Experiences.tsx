@@ -22,7 +22,7 @@ export default function Experiences() {
             <BriefcaseBusiness className="inline w-5 mr-2"/>
             Career
           </h2>
-        <div className="grid grid-flow-row grid-cols-2 gap-3">
+        <div className="grid grid-flow-row grid-cols-1 gap-3 md:grid-cols-2">
           {experience.map(e => ExperienceNode(e))}
         </div>
       </>

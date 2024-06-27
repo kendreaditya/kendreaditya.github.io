@@ -71,7 +71,7 @@ export default function Projects() {
           Projects 
         </h2>
 
-        <div className="grid grid-flow-row grid-cols-2 gap-3">
+        <div className="grid grid-flow-row grid-cols-1 gap-3 md:grid-cols-2">
           <ProjectNode project={projects[0]} Graphic={Search}/>
           <ProjectNode project={projects[1]} Graphic={HeartSound}/>
         </div>
