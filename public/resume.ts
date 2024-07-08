@@ -66,7 +66,7 @@ const experience: Experience[] = [
 
 const projects: Project[] = [
     {
-      "title": "Sematic - an answer engine",
+      "title": "Semant - an answer engine",
       "link": "https://www.semant.co/",
       "description": [
         "An LLM first-engine for learning and research with access to websites, books, videos, and much more ",
