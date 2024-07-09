@@ -24,7 +24,7 @@ export default function Publications() {
           <BookMarked className="inline w-5 mr-2" />
           Selected Publications
         </h2>
-        <div className="grid grid-flow-row grid-cols-1 gap-3 md:grid-cols-2">
+        <div className="grid grid-flow-row grid-cols-1 gap-3 md:grid-cols-3">
           {publications.map((e) => publicationNode(e))}
         </div>
       </>
