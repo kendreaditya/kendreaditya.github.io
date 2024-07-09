@@ -121,7 +121,7 @@ const publications: Publication[] = [
     authors: ["J Yu", "Z Kong", "A Kendre", "H Peng", "C Yang", "L Sun", "A Leow", "L He"],
     venue: "IEEE International Symposium on Biomedical Imaging (ISBI)",
     year: 2022,
-    link: "https://ieeexplore.ieee.org/document/9761543"
+    link: "https://ieeexplore.ieee.org/abstract/document/9761456/authors#authors"
   },
   {
     title: "Computer Audition Arrhythmia Classification in Heart Sounds",
