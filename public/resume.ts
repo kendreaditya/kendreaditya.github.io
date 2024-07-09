@@ -28,7 +28,7 @@ const experience: Experience[] = [
     image: "https://www.huck.psu.edu/assets/uploads/documents/PSU-CMYK-Black-Shield.png",
     dates: "August 2023 – December 2023",
     skills: ["C Programming", "Operating Systems", "Distributed Systems", "React.js", "SystemVerilog", "Natural Language Processing", "Machine Learning"],
-    description: "Research engineer for the Systems and Machine Learning, worked on memory allocators, scheduling policies, architecture pipelining, and edge computing."
+    description: "Research engineer for projects on system design (os + distributed) and machine learning, worked on memory allocators, scheduling policies, architecture pipelining, and edge computing."
   },
   {
     title: "AI Software Engineering Intern",
@@ -36,7 +36,7 @@ const experience: Experience[] = [
     image: "https://i.imgur.com/1UM2Jgw.png",
     dates: "May 2023 – August 2023",
     skills: ["Next.js", "Tailwind CSS", "OpenAI GPT-3", "Azure", "Okta", "Natural Language Processing", "Machine Learning", "Security"],
-    description: "AI software engineering intern for the Global Innovation Team, worked on model alignment, a computer vision pipeline, a full-stack application, and a blockchain network."
+    description: "AI software engineering intern for the Global Innovation Team, worked on model alignment, computer vision pipelines, full-stack applications, and a blockchain network."
   },
   {
     title: "Machine Learning Engineering Intern",
@@ -44,7 +44,7 @@ const experience: Experience[] = [
     image: "https://media.licdn.com/dms/image/C4E0BAQGWJ9riGlmWag/company-logo_200_200/0/1630599369115/yorkexponential_logo?e=1727308800&v=beta&t=JcMYzBAlCrNIJxfhw0MgIVA9lPs0FV3it34dxPVI-Yk",
     dates: "August 2021 – January 2022",
     skills: ["Object Detection", "TensorFlow", "Data Augmentation", "AWS", "Cloud Computing"],
-    description: "Machine learning engineering intern for the AI team, worked on object detection, data augmentation, and cloud computing."
+    description: "Machine learning engineering intern for the AI team, worked on object detection for defects in garments, data augmentation, and cloud computing."
   },
   {
     title: "Software Engineering Intern",
@@ -52,7 +52,7 @@ const experience: Experience[] = [
     image: "https://logosandtypes.com/wp-content/uploads/2024/01/powerpulse.svg",
     dates: "June 2021 – August 2021",
     skills: ["Agile Methodologies", "Node.js", "Express.js", "Redux", "MongoDB", "API Design"],
-    description: "Software engineering intern for the backend team, worked on API design, user experience, and property management."
+    description: "Software engineering intern for the full stack team, worked on API design and user experience for property management tool."
   },
   {
     title: "Undergraduate Researcher",
@@ -60,7 +60,7 @@ const experience: Experience[] = [
     image: "https://asset.brandfetch.io/idlKpW_LnG/id2v-xSc2V.svg",
     dates: "July 2020 – May 2021",
     skills: ["Deep Learning", "PyTorch", "PyTorch Lightning", "Weights & Biases", "Data Preprocessing", "ResNet", "DenseNet"],
-    description: "Undergraduate researcher for the Brain Network Analysis Group, worked on EEG connectome analysis, deep learning, and data preprocessing."
+    description: "Undergraduate researcher for working on brain network analysis with EEG and MRI data to synthesize connectome data to train deep learning models for emotion recognition."
   }
 ];
 
@@ -69,7 +69,7 @@ const projects: Project[] = [
       "title": "Semant - an answer engine",
       "link": "https://www.semant.co/",
       "description": [
-        "An LLM first-engine for learning and research with access to websites, books, videos, and much more ",
+        "An LLM first-engine built to give answers with access to websites, books, videos, and much more.",
       ]
     },
     {
