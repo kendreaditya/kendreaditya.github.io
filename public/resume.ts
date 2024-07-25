@@ -16,7 +16,7 @@ interface Project {
 const experience: Experience[] = [
   {
     title: "Lead Software Engineer",
-    image: "https://i.imgur.com/9qwc6JQ.png",
+    image: "/assets/gaudiyakirtan.png",
     company: "Gaudiya Kirtan",
     dates: "January 2024 – Present",
     skills: ["React Native", "Next.js", "Tailwind CSS", "Natural Language Processing", "User Experience Design"],
@@ -25,7 +25,7 @@ const experience: Experience[] = [
   {
     title: "Research Engineer",
     company: "Pennsylvania State University",
-    image: "https://www.huck.psu.edu/assets/uploads/documents/PSU-CMYK-Black-Shield.png",
+    image: "/assets/psu.png",
     dates: "August 2023 – December 2023",
     skills: ["C Programming", "Operating Systems", "Distributed Systems", "React.js", "SystemVerilog", "Natural Language Processing", "Machine Learning"],
     description: "Research engineer for projects on system design (os + distributed) and machine learning, worked on memory allocators, scheduling policies, architecture pipelining, and edge computing."
@@ -33,7 +33,7 @@ const experience: Experience[] = [
   {
     title: "AI Software Engineering Intern",
     company: "Kimberly-Clark - Global Innovation Team",
-    image: "https://i.imgur.com/1UM2Jgw.png",
+    image: "/assets/kimberlyclark.png",
     dates: "May 2023 – August 2023",
     skills: ["Next.js", "Tailwind CSS", "OpenAI GPT-3", "Azure", "Okta", "Natural Language Processing", "Machine Learning", "Security"],
     description: "AI software engineering intern for the Global Innovation Team, worked on model alignment, computer vision pipelines, full-stack applications, and a blockchain network."
@@ -41,7 +41,7 @@ const experience: Experience[] = [
   {
     title: "Machine Learning Engineering Intern",
     company: "York Exponential",
-    image: "https://media.licdn.com/dms/image/C4E0BAQGWJ9riGlmWag/company-logo_200_200/0/1630599369115/yorkexponential_logo?e=1727308800&v=beta&t=JcMYzBAlCrNIJxfhw0MgIVA9lPs0FV3it34dxPVI-Yk",
+    image: "/assets/yorkexponential.jpeg",
     dates: "August 2021 – January 2022",
     skills: ["Object Detection", "TensorFlow", "Data Augmentation", "AWS", "Cloud Computing"],
     description: "Machine learning engineering intern for the AI team, worked on object detection for defects in garments, data augmentation, and cloud computing."
@@ -49,7 +49,7 @@ const experience: Experience[] = [
   {
     title: "Software Engineering Intern",
     company: "Palace",
-    image: "https://logosandtypes.com/wp-content/uploads/2024/01/powerpulse.svg",
+    image: "/assets/palace.svg",
     dates: "June 2021 – August 2021",
     skills: ["Agile Methodologies", "Node.js", "Express.js", "Redux", "MongoDB", "API Design"],
     description: "Software engineering intern for the full stack team, worked on API design and user experience for property management tool."
@@ -57,7 +57,7 @@ const experience: Experience[] = [
   {
     title: "Undergraduate Researcher",
     company: "Lehigh University",
-    image: "https://asset.brandfetch.io/idlKpW_LnG/id2v-xSc2V.svg",
+    image: "/assets/lehigh.svg",
     dates: "July 2020 – May 2021",
     skills: ["Deep Learning", "PyTorch", "PyTorch Lightning", "Weights & Biases", "Data Preprocessing", "ResNet", "DenseNet"],
     description: "Undergraduate researcher for working on brain network analysis with EEG and MRI data to synthesize connectome data to train deep learning models for emotion recognition."
@@ -90,12 +90,12 @@ interface Education {
 const education: Education[] = [
   {
     "title": "Pennsylvania State University",
-    "image": "https://www.huck.psu.edu/assets/uploads/documents/PSU-CMYK-Black-Shield.png",
+    "image": "/assets/psu.png",
     "description": "Computer Science, B.S."
   },
   {
     "title": "Cumberland Valley High School",
-    "image": "https://i.imgur.com/oBR3KXk.png",
+    "image": "/assets/cumberlandvalley.png",
     "description": "High School Diploma"
   }
 ];
