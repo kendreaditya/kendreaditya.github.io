@@ -13,7 +13,9 @@ const ProjectNode = ({
   Graphic: ElementType;
 }) => (
   <div className="flex items-center space-x-4">
-    <div className="flex-none rounded-xl w-16 h-16 shadow-[0_4px_4px_rgba(0,0,0,0.25),inset_0_3px_0_-1.5px_rgba(60,59,62,0.75)] bg-gradient-to-b from-[#242427] to-[#19191C] overflow-hidden">
+    <div 
+      className="flex-none rounded-xl w-16 h-16 shadow-[0_4px_4px_rgba(0,0,0,0.25),inset_0_3px_0_-1.5px_rgba(60,59,62,0.75)] bg-gradient-to-b from-[#242427] to-[#19191C] overflow-hidden"
+      >
       <Graphic />
     </div>
     <div>

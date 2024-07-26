@@ -6,6 +6,7 @@
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -15,6 +16,21 @@ body {
 
 #blob {
   filter: url(#noiseFilter);
+  display: flex;
+  place-items: center;
+  position: relative;
+  z-index: -10;
+}
+
+#blob::before {
+  content: '';
+  position: absolute;
+  z-index: -10;
+  height: 180px;
+  width: 100%;
+  background-image: conic-gradient(from 180deg at 50% 50%, #0c4a6e, #0141ff);
+  opacity: 0.5;
+  filter: blur(150px);
 }
 
 @layer utilities {

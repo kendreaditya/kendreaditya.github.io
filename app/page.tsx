@@ -6,7 +6,7 @@ import Education from "./_components/Education";
 
 export default function Home() {
   return (
-    <main className="max-w-5xl flex flex-col items-center justify-center md:p-24 p-8 m-auto overflow-hidden">
+    <main className="max-w-5xl flex flex-col items-center justify-center md:p-24 p-8 m-auto">
       <Header />
       <Projects />
       <Experinces />
