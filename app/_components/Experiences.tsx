@@ -1,7 +1,7 @@
 import data from "@/public/data.json";
 import { BriefcaseBusiness } from "lucide-react";
 
-const ExperienceNode = ({ company, image, description }) => (
+const ExperienceNode = ({ company, image, description }: { company: string, image: any, description: string}) => (
   <div className="content-item">
     <img className="item-image" src={image} alt={company} draggable={false} />
     <div>

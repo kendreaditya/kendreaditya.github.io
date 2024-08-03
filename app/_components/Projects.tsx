@@ -35,7 +35,7 @@ const graphicComponents = {
   HeartSound,
 };
 
-const ProjectNode = ({ title, link, description, graphic }) => {
+const ProjectNode = ({ title, link, description, graphic }: { title: string, link: string, description: string[], graphic: any}) => {
   const Graphic = graphicComponents[graphic as keyof typeof graphicComponents];
   return (
     <div className="content-item">

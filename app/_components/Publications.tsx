@@ -1,7 +1,7 @@
 import data from "@/public/data.json";
 import { BookMarked, ArrowUpRight } from "lucide-react";
 
-const PublicationNode = ({ title, venue, link, authors, year }) => (
+const PublicationNode = ({ title, venue, link, authors, year }: {title: string, venue: string, link: string, authors: any, year: any}) => (
   <div className="flex flex-col space-y-1">
     <h3 className="item-title group">
       {title}{" "}

@@ -1,7 +1,7 @@
 import data from "@/public/data.json";
 import { School } from "lucide-react";
 
-const EducationNode = ({ title, description, image }) => (
+const EducationNode = ({ title, description, image }: { title: string, description: string, image: any }) => (
   <div className="content-item">
     <img className="item-image" src={image} alt={title} draggable={false} />
     <div className="flex flex-col justify-between w-full h-full">
