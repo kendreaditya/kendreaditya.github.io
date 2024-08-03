@@ -1,6 +1,6 @@
 import Header from "./_components/Header";
 import Projects from "./_components/Projects";
-import Experinces from "./_components/Experiences";
+import Experiences from "./_components/Experiences";
 import Publications from "./_components/Publications";
 import Education from "./_components/Education";
 
@@ -9,12 +9,10 @@ export default function Home() {
     <main className="max-w-5xl flex flex-col items-center justify-center md:p-24 p-8 m-auto">
       <Header />
       <Projects />
-      <Experinces />
+      <Experiences />
       <Publications />
       <Education />
-
-      {/* <--- Noise Filter --> */}
-      <svg className="">
+      <svg>
         <filter id="noiseFilter">
           <feTurbulence
             type="fractalNoise"
@@ -30,7 +28,7 @@ export default function Home() {
           <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
         </filter>
       </svg>
-      <p>made by a human on earth</p>
+      <p className="mt-8 text-sm text-gray-500">made by a human on earth</p>
     </main>
   );
 }
