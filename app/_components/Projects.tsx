@@ -38,20 +38,25 @@ const graphicComponents = {
 const ProjectNode = ({ title, link, description, graphic }: { title: string, link: string, description: string[], graphic: any}) => {
   const Graphic = graphicComponents[graphic as keyof typeof graphicComponents];
   return (
-    <div className="content-item">
-      <div className="item-image overflow-hidden" style={{padding: 0}}>
-        <Graphic />
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block group"
+    >
+      <div className="content-item">
+        <div className="item-image overflow-hidden" style={{ padding: 0 }}>
+          <Graphic />
+        </div>
+        <div>
+            <h3 className="item-title">
+              {title}{" "}
+              <ArrowUpRight className="inline w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
+            </h3>
+          <p className="item-description">{description[0]}</p>
+        </div>
       </div>
-      <div>
-        <h3 className="item-title">
-          {title}{" "}
-          <a href={link}>
-            <ArrowUpRight className="inline w-5 h-5 hover:scale-110" />
-          </a>
-        </h3>
-        <p className="item-description">{description[0]}</p>
-      </div>
-    </div>
+    </a>
   );
 };
 

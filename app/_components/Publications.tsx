@@ -1,19 +1,31 @@
 import data from "@/public/data.json";
 import { BookMarked, ArrowUpRight } from "lucide-react";
 
-const PublicationNode = ({ title, venue, link, authors, year }: {title: string, venue: string, link: string, authors: any, year: any}) => (
+const PublicationNode = ({
+  title,
+  venue,
+  link,
+  authors,
+  year,
+}: {
+  title: string;
+  venue: string;
+  link: string;
+  authors: any;
+  year: any;
+}) => (
   <div className="flex flex-col space-y-1">
-    <h3 className="item-title group">
-      {title}{" "}
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block transition-transform group-hover:translate-x-1"
-      >
-        <ArrowUpRight className="inline w-4 h-4 text-blue-400" />
-      </a>
-    </h3>
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block group"
+    >
+      <h3 className="item-title">
+        {title}{" "}
+        <ArrowUpRight className="inline w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
+      </h3>
+    </a>
     <p className="item-description">{authors.join(", ")}</p>
     <p className="item-description text-gray-400">
       {venue}, {year}
