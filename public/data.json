@@ -152,7 +152,7 @@
       "authors": ["A Kendre", "H Nguyen", "S Saha", "F Kabir"],
       "venue": "arXiv preprint",
       "year": 2023,
-      "link": "https://github.com/kendreaditya/pythia-mcreu/blob/main/LLM.pdf"
+      "link": "/papers/Beluga__Boosted_Explanatory_Learning_Using_GPT_Assistance.pdf"
     },
     {
       "title": "Structure-Preserving Graph Kernel for Brain Network Classification",
@@ -166,7 +166,7 @@
       "authors": ["A Kendre"],
       "venue": "International Science and Engineering Fair (ISEF)",
       "year": 2021,
-      "link": "https://github.com/kendreaditya/heartface/blob/main/assets"
+      "link": "/papers/Arrhythmia_Classification_in_Heart_Sounds.pdf"
     }
   ]
 }
