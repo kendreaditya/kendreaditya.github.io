@@ -118,6 +118,14 @@
   ],
   "projects": [
     {
+      "title": "Readsome - a reading app",
+      "link": "https://readsome.semant.co/",
+      "description": [
+        "An app that helps you achive your reading goals with state-of-the-art speach synthesis."
+      ],
+      "graphic": "Readsome"
+    },
+    {
       "title": "Semant Search - an answer engine",
       "link": "https://search.semant.co/",
       "description": [

@@ -2,6 +2,17 @@ import data from "@/public/data.json";
 import { GalleryVerticalEnd, ArrowUpRight } from "lucide-react";
 import { ElementType } from "react";
 
+const Readsome = () => (
+  <div className="overflow-hidden h-[75px] w-[90px] pt-[2px]">
+    <div className="text-[6px] text-content -ml-1">
+      The Hunger Games Harry Potter and the Philosophers Stone Twilight To Kill
+      a Mockingbird The Great Gatsby The Fault in Our Stars The Hobbit or There
+      and Back Again The Catcher in the Rye Angels Demons Pride and Prejudice
+      and Back Again The Catcher in the Rye Angels Demons Pride and Prejudice
+    </div>
+  </div>
+);
+
 const Search = () => (
   <div className="py-2 pl-2 my-2.5 w-20">
     <div className="flex flex-row rounded-full border border-neutral-100 p-0.5 items-center space-x-2 bg-black">
@@ -33,6 +44,7 @@ const HeartSound = () => (
 const graphicComponents = {
   Search,
   HeartSound,
+  Readsome
 };
 
 const ProjectNode = ({ title, link, description, graphic }: { title: string, link: string, description: string[], graphic: any}) => {

@@ -14,6 +14,19 @@ body {
   background: rgb(var(--background-start-rgb));
 }
 
+.text-content {
+  line-height: 1.2;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.25);
+  z-index: -10;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: url('../public/assets/background.gif');
+  /* background-size: cover; */
+  background-position: center;
+}
+
 .section-title {
   @apply flex items-center w-full mb-3 mt-12 text-base font-semibold text-left text-white;
 }
