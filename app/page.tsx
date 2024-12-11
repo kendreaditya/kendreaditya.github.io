@@ -3,11 +3,13 @@ import Projects from "./_components/Projects";
 import Experiences from "./_components/Experiences";
 import Publications from "./_components/Publications";
 import Education from "./_components/Education";
+import Blog from "./_components/Blog";
 
 export default function Home() {
   return (
-    <main className="max-w-5xl flex flex-col items-center justify-center md:p-24 p-8 m-auto">
+    <main className="max-w-5xl flex flex-col justify-center md:p-24 p-8 m-auto">
       <Header />
+      <Blog />
       <Projects />
       <Experiences />
       <Publications />

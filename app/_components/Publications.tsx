@@ -27,7 +27,7 @@ const PublicationNode = ({
       </h3>
     </a>
     <p className="item-description">{authors.join(", ")}</p>
-    <p className="item-description text-gray-400">
+    <p className="item-description text-[#a1a1a1]">
       {venue}, {year}
     </p>
   </div>
