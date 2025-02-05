@@ -62,9 +62,9 @@
       "description": "Research engineer for projects on system design (os + distributed) and machine learning; worked on memory allocators, scheduling policies, architecture pipelining, and edge computing."
     },
     {
-      "title": "AI Software Engineering Intern",
+      "title": "AI Software Engineer",
       "company": "Kimberly-Clark - Global Innovation Team",
-      "image": "/assets/kimberlyclark.png",
+      "image": "/assets/kimberly-clark.svg",
       "dates": "May 2023 – August 2023",
       "skills": [
         "Next.js",
@@ -79,9 +79,9 @@
       "description": "AI software engineer for the Global Innovation Team; worked on model alignment, computer vision pipelines, full-stack applications, and a blockchain network."
     },
     {
-      "title": "Machine Learning Engineering Intern",
+      "title": "Machine Learning Engineer",
       "company": "York Exponential",
-      "image": "/assets/yorkexponential.jpeg",
+      "image": "/assets/york-exponential.svg",
       "dates": "August 2021 – January 2022",
       "skills": [
         "Object Detection",
