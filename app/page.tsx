@@ -9,9 +9,8 @@ export default function Home() {
   return (
     <main className="max-w-5xl flex flex-col justify-center md:p-24 p-8 m-auto">
       <Header />
-      <Blog />
-      <Projects />
       <Experiences />
+      <Projects />
       <Publications />
       <Education />
       <svg>

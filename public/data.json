@@ -20,6 +20,18 @@
   },
   "experience": [
     {
+      "title": "Software Engineer",
+      "image": "/assets/meta.svg",
+      "company": "Meta",
+      "dates": "March 2025 – Present",
+      "skills": [
+        "C++",
+        "Hack",
+        "Python"
+      ],
+      "description": "Software Engineer at Meta building Dynamic Ads - our systems match millions of products to users in real-time, driving $15B annual revenue."
+    },
+    {
       "title": "Lead Software Engineer",
       "image": "/assets/gaudiyakirtan.png",
       "company": "Gaudiya Kirtan",
