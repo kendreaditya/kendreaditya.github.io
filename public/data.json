@@ -2,7 +2,8 @@
   "personalInfo": {
     "name": "Aditya Kendre",
     "bio": "Scaling ideas while learning and building cool things - founding team at Semant and Gaudiya Kirtan.",
-    "image": "/assets/akendre.jpeg",
+    "image": "/assets/akendre.jpg",
+    "imagev2": "/assets/akendre-v2.jpg",
     "links": [
       {
         "icon": "Github",

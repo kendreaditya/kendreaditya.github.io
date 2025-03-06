@@ -27,31 +27,42 @@ const Button = ({
 };
 
 export default function Header() {
-  const { name, bio, image, links } = data.personalInfo;
+  const { name, bio, image, imagev2, links } = data.personalInfo;
   return (
     <div className="items-start justify-start w-full">
       <div id="blob"></div>
       <div className="flex space-x-3 md:flex-row flex-col">
-        <Image
-          src={image}
-          alt={name}
-          className="w-16 h-16 rounded-full animate-bounce m-auto md:m-0"
-          width={64}
-          height={64}
-          priority
-          draggable={false}
-        />
+        <div className="relative w-16 h-16 m-auto md:m-0">
+          <Image
+        src={imagev2}
+        alt={name}
+        className="absolute w-16 h-16 rounded-full"
+        width={64}
+        height={64}
+        priority
+        draggable={false}
+          />
+          <Image
+        src={image}
+        alt={name}
+        className="absolute w-16 h-16 rounded-full hover:opacity-0"
+        width={64}
+        height={64}
+        priority
+        draggable={false}
+          />
+        </div>
         <div className="items-start justify-start">
           <h1 className="text-lg font-bold">{name}</h1>
           <p>{bio}</p>
           <div className="flex flex-row my-2 space-x-2">
-            {links.map((link, index) => (
-              <Button
-                key={index}
-                Icon={link.icon as keyof typeof iconMap}
-                href={link.href}
-              />
-            ))}
+        {links.map((link, index) => (
+          <Button
+            key={index}
+            Icon={link.icon as keyof typeof iconMap}
+            href={link.href}
+          />
+        ))}
           </div>
         </div>
       </div>
