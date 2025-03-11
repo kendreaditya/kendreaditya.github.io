@@ -32,7 +32,7 @@ export default function Header() {
     <div className="items-start justify-start w-full">
       <div id="blob"></div>
       <div className="flex space-x-3 md:flex-row flex-col">
-        <div className="relative w-16 h-16 m-auto md:m-0">
+        <div className="relative w-16 h-16 m-auto md:m-0 flex-none">
           <Image
         src={imagev2}
         alt={name}
