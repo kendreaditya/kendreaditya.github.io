@@ -36,7 +36,7 @@ export default function Header() {
           <Image
         src={imagev2}
         alt={name}
-        className="absolute w-16 h-16 rounded-full"
+        className="absolute w-16 h-16 rounded-full aspect-square"
         width={64}
         height={64}
         priority
@@ -45,7 +45,7 @@ export default function Header() {
           <Image
         src={image}
         alt={name}
-        className="absolute w-16 h-16 rounded-full hover:opacity-0"
+        className="absolute w-16 h-16 rounded-full hover:opacity-0 aspect-square"
         width={64}
         height={64}
         priority
