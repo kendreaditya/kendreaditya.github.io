@@ -33,6 +33,15 @@
       "description": "Software Engineer at Meta building Dynamic Ads - our systems match millions of products to users in real-time, driving $15B annual revenue."
     },
     {
+      "title": "Founder",
+      "image": "/assets/semant.svg",
+      "company": "Semant",
+      "dates": "March 2024 – Present",
+      "skills": [
+      ],
+      "description": "Moving the forntier of human knowledge forward for the welfare of all - building next generation BCIs with AI."
+    },
+    {
       "title": "Lead Software Engineer",
       "image": "/assets/gaudiyakirtan.png",
       "company": "Gaudiya Kirtan",
