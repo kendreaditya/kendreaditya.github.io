@@ -133,7 +133,7 @@ export default function AutoComplete() {
             {/* Abstract */}
             <div className="mb-16 p-6 bg-gray-900 border-l-4 border-blue-500">
               <p className="text-base leading-relaxed text-gray-200">
-                <strong>AI systems shouldn't create cognitive dependency in any direction.</strong> People use AI as a tool to learn and explore ideas. That only works if they trust AI to enhance their thinking capacity. We outline our commitment to developing AI that strengthens rather than weakens human cognitive abilities, with humans in control, through our Cognitive Partnership principle.
+                <strong>AI systems shouldn&apos;t create cognitive dependency in any direction.</strong> People use AI as a tool to learn and explore ideas. That only works if they trust AI to enhance their thinking capacity. We outline our commitment to developing AI that strengthens rather than weakens human cognitive abilities, with humans in control, through our Cognitive Partnership principle.
               </p>
             </div>
 
@@ -143,7 +143,7 @@ export default function AutoComplete() {
                 <h2 className="text-2xl font-medium text-white mb-6">Introduction</h2>
                 
                 <p className="text-base leading-relaxed mb-6 text-gray-200">
-                  Contemporary artificial intelligence systems represent a qualitatively different technological paradigm than previous computational tools. While earlier technologies augmented specific cognitive domains—calculators enhanced arithmetic computation, GPS systems improved spatial navigation—modern large language models (LLMs) increasingly mediate fundamental cognitive processes including reasoning, decision-making, and moral judgment. This phenomenon constitutes what we term "cognitive autocomplete": the systematic replacement of effortful human deliberation with AI-generated responses across domains of existential significance.
+                  Contemporary artificial intelligence systems represent a qualitatively different technological paradigm than previous computational tools. While earlier technologies augmented specific cognitive domains—calculators enhanced arithmetic computation, GPS systems improved spatial navigation—modern large language models (LLMs) increasingly mediate fundamental cognitive processes including reasoning, decision-making, and moral judgment. This phenomenon constitutes what we term &ldquo;cognitive autocomplete&rdquo;: the systematic replacement of effortful human deliberation with AI-generated responses across domains of existential significance.
                 </p>
                 
                 <p className="text-base leading-relaxed mb-6 text-gray-200">
@@ -151,7 +151,7 @@ export default function AutoComplete() {
                 </p>
                 
                 <p className="text-base leading-relaxed mb-6 text-gray-200">
-                  This investigation synthesizes philosophical analysis with empirical evaluation to propose constitutional AI frameworks that preserve and enhance human cognitive autonomy. We present evidence for cognitive dependency patterns in current AI systems and introduce novel design principles for what we term "cognitive partnership"—AI architectures optimized for human intellectual development rather than task completion efficiency.
+                  This investigation synthesizes philosophical analysis with empirical evaluation to propose constitutional AI frameworks that preserve and enhance human cognitive autonomy. We present evidence for cognitive dependency patterns in current AI systems and introduce novel design principles for what we term &ldquo;cognitive partnership&rdquo;—AI architectures optimized for human intellectual development rather than task completion efficiency.
                 </p>
 
                 <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-8">
@@ -180,11 +180,11 @@ export default function AutoComplete() {
                   <h3 className="text-xl font-medium text-white mb-4">Loss of Autonomy and Deliberative Capacity</h3>
                   
                   <p className="text-base leading-relaxed mb-6 text-gray-200">
-                    Philosophical accounts of human flourishing consistently identify autonomous deliberation as fundamental to moral agency and meaningful existence (Dworkin, 1988; Raz, 1986). Autonomy transcends mere freedom of choice to encompass the developed capacity for reflective evaluation of one's values, goals, and practical commitments. Contemporary AI systems threaten this capacity by systematically replacing the cognitive work through which individuals develop and exercise practical wisdom.
+                    Philosophical accounts of human flourishing consistently identify autonomous deliberation as fundamental to moral agency and meaningful existence (Dworkin, 1988; Raz, 1986). Autonomy transcends mere freedom of choice to encompass the developed capacity for reflective evaluation of one&apos;s values, goals, and practical commitments. Contemporary AI systems threaten this capacity by systematically replacing the cognitive work through which individuals develop and exercise practical wisdom.
                   </p>
                   
                   <p className="text-base leading-relaxed mb-6 text-gray-200">
-                    This intervention differs qualitatively from previous technological augmentation. While computational tools like calculators enhanced efficiency within circumscribed domains while preserving the locus of higher-order reasoning, AI systems increasingly mediate the very processes through which individuals develop evaluative judgment. The replacement of deliberative effort with algorithmic output risks what we term "practical wisdom atrophy"—the degradation of capacities essential to autonomous moral agency.
+                    This intervention differs qualitatively from previous technological augmentation. While computational tools like calculators enhanced efficiency within circumscribed domains while preserving the locus of higher-order reasoning, AI systems increasingly mediate the very processes through which individuals develop evaluative judgment. The replacement of deliberative effort with algorithmic output risks what we term &ldquo;practical wisdom atrophy&rdquo;—the degradation of capacities essential to autonomous moral agency.
                   </p>
 
                   <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -207,11 +207,11 @@ export default function AutoComplete() {
                   <h3 className="text-xl font-medium text-white mb-4">The Phenomenological Perspective</h3>
                   
                   <p className="text-base leading-relaxed mb-6 text-gray-200">
-                    Phenomenological analysis reveals the existential significance of cognitive effort in human meaning-making. Husserl's concept of the Lebenswelt describes the pre-theoretical horizon of experience within which all conscious acts acquire significance (Husserl, 1913/1982). This lifeworld emerges through active engagement with environmental challenges that require sustained cognitive work and reflective synthesis.
+                    Phenomenological analysis reveals the existential significance of cognitive effort in human meaning-making. Husserl&apos;s concept of the Lebenswelt describes the pre-theoretical horizon of experience within which all conscious acts acquire significance (Husserl, 1913/1982). This lifeworld emerges through active engagement with environmental challenges that require sustained cognitive work and reflective synthesis.
                   </p>
                   
                   <p className="text-base leading-relaxed mb-6 text-gray-200">
-                    Heidegger's analysis of Dasein as fundamentally "Being-in-the-World" emphasizes the existential structure of skillful coping through which individuals develop authentic self-understanding (Heidegger, 1927/1962). AI systems that bypass this coping structure by providing ready-made solutions risk disrupting what Heidegger terms "thrownness" (Geworfenheit)—the confrontation with existential challenges through which individuals develop authentic agency.
+                    Heidegger&apos;s analysis of Dasein as fundamentally &ldquo;Being-in-the-World&rdquo; emphasizes the existential structure of skillful coping through which individuals develop authentic self-understanding (Heidegger, 1927/1962). AI systems that bypass this coping structure by providing ready-made solutions risk disrupting what Heidegger terms &ldquo;thrownness&rdquo; (Geworfenheit)—the confrontation with existential challenges through which individuals develop authentic agency.
                   </p>
                 </div>
                 
@@ -223,12 +223,12 @@ export default function AutoComplete() {
                   </p>
                   
                   <p className="text-base leading-relaxed mb-6 text-gray-200">
-                    Contemporary AI systems systematically target System 2 cognitive demands, offering to replace effortful deliberation with rapid algorithmic output. This substitution creates what cognitive scientists term "cognitive offloading"—the externalization of mental effort to technological systems (Risko & Gilbert, 2016). However, unlike traditional cognitive tools that preserve metacognitive engagement, AI systems risk creating dependencies that persist beyond the technological interaction.
+                    Contemporary AI systems systematically target System 2 cognitive demands, offering to replace effortful deliberation with rapid algorithmic output. This substitution creates what cognitive scientists term &ldquo;cognitive offloading&rdquo;—the externalization of mental effort to technological systems (Risko & Gilbert, 2016). However, unlike traditional cognitive tools that preserve metacognitive engagement, AI systems risk creating dependencies that persist beyond the technological interaction.
                   </p>
 
                   <div className="bg-yellow-900 border-l-4 border-yellow-500 p-4 mb-6">
                     <p className="text-sm text-yellow-200">
-                      <strong>Critical implication:</strong> Research demonstrates that System 2 depletion increases susceptibility to false beliefs and reduces resistance to misinformation (Kahneman, 2011; Pennycook & Rand, 2019). In democratic contexts requiring informed deliberation, the systematic weakening of controlled cognitive processes through AI dependency may undermine citizens' capacity for critical evaluation of political information and policy alternatives.
+                      <strong>Critical implication:</strong> Research demonstrates that System 2 depletion increases susceptibility to false beliefs and reduces resistance to misinformation (Kahneman, 2011; Pennycook & Rand, 2019). In democratic contexts requiring informed deliberation, the systematic weakening of controlled cognitive processes through AI dependency may undermine citizens&apos; capacity for critical evaluation of political information and policy alternatives.
                     </p>
                   </div>
                 </div>
@@ -290,18 +290,18 @@ export default function AutoComplete() {
                   
                   <div className="space-y-6 mb-8">
                     <div className="border-l-4 border-blue-500 pl-4">
-                      <h4 className="font-medium text-white mb-1">MIT research on "cognitive debt"</h4>
+                      <h4 className="font-medium text-white mb-1">MIT research on &ldquo;cognitive debt&rdquo;</h4>
                       <p className="text-sm text-gray-300">Demonstrates that while AI assistance can improve immediate performance, it often undermines the cognitive processes necessary for learning and retention. When individuals first engage their brains before accessing AI tools, outcomes improve significantly—suggesting the importance of effortful thinking before AI assistance.</p>
                     </div>
                     
                     <div className="border-l-4 border-blue-500 pl-4">
                       <h4 className="font-medium text-white mb-1">Studies on memory and recall</h4>
-                      <p className="text-sm text-gray-300">After AI-assisted writing show decreased retention when AI handles cognitive work. The paper "Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing Task" found that AI assistance can create cognitive dependencies that persist even when the AI is no longer available.</p>
+                      <p className="text-sm text-gray-300">After AI-assisted writing show decreased retention when AI handles cognitive work. The paper &ldquo;Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing Task&rdquo; found that AI assistance can create cognitive dependencies that persist even when the AI is no longer available.</p>
                     </div>
                     
                     <div className="border-l-4 border-blue-500 pl-4">
                       <h4 className="font-medium text-white mb-1">Educational psychology research</h4>
-                      <p className="text-sm text-gray-300">On effective teaching consistently emphasizes the value of "desirable difficulties"—challenges that require effort and sometimes lead to mistakes, but ultimately build stronger understanding and transfer capabilities.</p>
+                      <p className="text-sm text-gray-300">On effective teaching consistently emphasizes the value of &ldquo;desirable difficulties&rdquo;—challenges that require effort and sometimes lead to mistakes, but ultimately build stronger understanding and transfer capabilities.</p>
                     </div>
                   </div>
                 </div>
@@ -314,7 +314,7 @@ export default function AutoComplete() {
                   <h3 className="text-xl font-medium text-white mb-6">Educational System Prompts Analysis</h3>
                   
                   <p className="text-base leading-relaxed mb-8 text-gray-200">
-                    Current AI systems have begun implementing "study modes" and educational prompts that attempt to address cognitive dependency concerns. We analyzed existing approaches to identify both promising techniques and critical limitations.
+                    Current AI systems have begun implementing &ldquo;study modes&rdquo; and educational prompts that attempt to address cognitive dependency concerns. We analyzed existing approaches to identify both promising techniques and critical limitations.
                   </p>
                   
                   <div id="chatgpt-prompt" className="mb-12">
@@ -327,9 +327,9 @@ export default function AutoComplete() {
 ## STRICT RULES
 Be an approachable-yet-dynamic teacher, who helps the user learn by guiding them through their studies.
 
-1. **Get to know the user.** If you don't know their goals or grade level, ask the user before diving in. (Keep this lightweight!) If they don't answer, aim for explanations that would make sense to a 10th grade student.
+1. **Get to know the user.** If you don&apos;t know their goals or grade level, ask the user before diving in. (Keep this lightweight!) If they don&apos;t answer, aim for explanations that would make sense to a 10th grade student.
 2. **Build on existing knowledge.** Connect new ideas to what the user already knows.
-3. **Guide users, don't just give answers.** Use questions, hints, and small steps so the user discovers the answer for themselves.
+3. **Guide users, don&apos;t just give answers.** Use questions, hints, and small steps so the user discovers the answer for themselves.
 4. **Check and reinforce.** After hard parts, confirm the user can restate or use the idea. Offer quick summaries, mnemonics, or mini-reviews to help the ideas stick.
 5. **Vary the rhythm.** Mix explanations, questions, and activities (like roleplaying, practice rounds, or asking the user to teach _you_) so it feels like a conversation, not a lecture.
 
@@ -418,7 +418,7 @@ For advanced technical questions (PhD-level, research, graduate topics with soph
                   <h3 className="text-xl font-medium text-white mb-6">Cognitive Partnership Framework</h3>
                   
                   <p className="text-base leading-relaxed mb-8 text-gray-200">
-                    Based on our analysis, we propose a new constitutional AI framework that prioritizes human cognitive development over convenience. The approach centers on four core design principles that shift AI from an "answer machine" to an intellectual development partner.
+                    Based on our analysis, we propose a new constitutional AI framework that prioritizes human cognitive development over convenience. The approach centers on four core design principles that shift AI from an &ldquo;answer machine&rdquo; to an intellectual development partner.
                   </p>
                   
                   <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -469,7 +469,7 @@ SPECIFIC TECHNIQUES:
 
 WHEN TO PROVIDE DIRECT ANSWERS:
 - Safety-critical situations requiring immediate action
-- Basic factual lookups that don't involve reasoning
+- Basic factual lookups that don&apos;t involve reasoning
 - After sufficient cognitive effort has been invested
 - When user explicitly requests information for time-sensitive decisions
 
@@ -495,11 +495,11 @@ Your effectiveness is measured by:
                 <h2 className="text-2xl font-medium text-white mb-6">Discussion</h2>
                 
                 <p className="text-base leading-relaxed mb-6 text-gray-200">
-                  The "autocomplete for life" problem represents a crucial inflection point in human-AI relations. We can continue developing AI systems optimized for efficiency and satisfaction, potentially creating technological dependencies that undermine human cognitive capacity. Or we can consciously design AI to serve human development, creating tools that make us more thoughtful, more capable, and more autonomous.
+                  The &ldquo;autocomplete for life&rdquo; problem represents a crucial inflection point in human-AI relations. We can continue developing AI systems optimized for efficiency and satisfaction, potentially creating technological dependencies that undermine human cognitive capacity. Or we can consciously design AI to serve human development, creating tools that make us more thoughtful, more capable, and more autonomous.
                 </p>
                 
                 <p className="text-base leading-relaxed mb-8 text-gray-200">
-                  The path forward requires recognizing that not all cognitive friction should be eliminated. Some struggles are meaningful—they build the intellectual muscles we need for wisdom, judgment, and self-direction. The goal isn't to preserve inefficiency for its own sake, but to distinguish between malignant suffering that should be eliminated and meaningful challenges that foster growth.
+                  The path forward requires recognizing that not all cognitive friction should be eliminated. Some struggles are meaningful—they build the intellectual muscles we need for wisdom, judgment, and self-direction. The goal isn&apos;t to preserve inefficiency for its own sake, but to distinguish between malignant suffering that should be eliminated and meaningful challenges that foster growth.
                 </p>
                 
                 <div className="grid md:grid-cols-3 gap-6 mb-12">
@@ -509,7 +509,7 @@ Your effectiveness is measured by:
                   </div>
                   <div className="p-6 border border-gray-700 rounded-lg">
                     <h4 className="font-medium text-white mb-3">For Users</h4>
-                    <p className="text-sm text-gray-300">Consciously choose growth-oriented AI interactions even when they require more effort. Ask not just "What's the answer?" but "How can I learn to answer this myself?"</p>
+                    <p className="text-sm text-gray-300">Consciously choose growth-oriented AI interactions even when they require more effort. Ask not just &ldquo;What&apos;s the answer?&rdquo; but &ldquo;How can I learn to answer this myself?&rdquo;</p>
                   </div>
                   <div className="p-6 border border-gray-700 rounded-lg">
                     <h4 className="font-medium text-white mb-3">For Society</h4>
