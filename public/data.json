@@ -165,6 +165,14 @@
         "Instant, semantic search for LLM benchmarks (MMLU-Pro, GPQA, etc.) powered by Pinecone and Next.js."
       ],
       "graphic": "BenchmarkSearch"
+    },
+    {
+      "title": "Web Context Builder",
+      "link": "https://github.com/kendreaditya/web-context-builder",
+      "description": [
+        "Web scraper CLI that converts websites to LLM-optimized markdown for context engineering."
+      ],
+      "graphic": "WebContextBuilder"
     }
   ],
   "education": [

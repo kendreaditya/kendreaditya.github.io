@@ -62,11 +62,48 @@ const BenchmarkSearch = () => (
   </div>
 );
 
+const WebContextBuilder = () => (
+  <div className="w-auto h-auto items-center justify-center min-w-[90px]">
+    <div className="h-16 w-16 rounded-xl flex items-center justify-center overflow-hidden relative group">
+      <div className="absolute inset-0"></div>
+      <svg width="80" height="64" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        {/* Edges - Level 1 */}
+        <path d="M20 32 C 32 32, 32 16, 44 16" stroke="#ffffff" strokeWidth="1.2" strokeOpacity="0.5" className="animate-pulse" style={{ animationDelay: '100ms', animationDuration: '2s' }} />
+        <path d="M20 32 C 35 32, 45 32, 56 32" stroke="#ffffff" strokeWidth="1.2" strokeOpacity="0.5" className="animate-pulse" style={{ animationDelay: '150ms', animationDuration: '2s' }} />
+        <path d="M20 32 C 32 32, 32 48, 44 48" stroke="#ffffff" strokeWidth="1.2" strokeOpacity="0.5" className="animate-pulse" style={{ animationDelay: '200ms', animationDuration: '2s' }} />
+
+        {/* Edges - Level 2 */}
+        <path d="M44 16 C 52 16, 52 10, 60 10" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.4" className="animate-pulse" style={{ animationDelay: '400ms', animationDuration: '2s' }} />
+        <path d="M44 16 C 52 16, 52 22, 60 22" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.4" className="animate-pulse" style={{ animationDelay: '450ms', animationDuration: '2s' }} />
+        <path d="M44 48 C 52 48, 52 42, 60 42" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.4" className="animate-pulse" style={{ animationDelay: '500ms', animationDuration: '2s' }} />
+        <path d="M44 48 C 52 48, 52 54, 60 54" stroke="#ffffff" strokeWidth="0.8" strokeOpacity="0.4" className="animate-pulse" style={{ animationDelay: '550ms', animationDuration: '2s' }} />
+
+        {/* Nodes */}
+        {/* Root */}
+        <circle cx="20" cy="32" r="3.5" fill="#ffffff" />
+        <circle cx="20" cy="32" r="6" stroke="#ffffff" strokeWidth="0.5" strokeOpacity="0.3" />
+
+        {/* Level 1 Nodes */}
+        <circle cx="44" cy="16" r="2.5" fill="#ffffff" className="animate-pulse" style={{ animationDelay: '300ms', animationDuration: '2s' }} />
+        <circle cx="56" cy="32" r="2.5" fill="#ffffff" className="animate-pulse" style={{ animationDelay: '350ms', animationDuration: '2s' }} />
+        <circle cx="44" cy="48" r="2.5" fill="#ffffff" className="animate-pulse" style={{ animationDelay: '400ms', animationDuration: '2s' }} />
+
+        {/* Level 2 Nodes */}
+        <circle cx="60" cy="10" r="1.5" fill="#ffffff" className="animate-pulse" style={{ animationDelay: '600ms', animationDuration: '2s' }} />
+        <circle cx="60" cy="22" r="1.5" fill="#ffffff" className="animate-pulse" style={{ animationDelay: '650ms', animationDuration: '2s' }} />
+        <circle cx="60" cy="42" r="1.5" fill="#ffffff" className="animate-pulse" style={{ animationDelay: '700ms', animationDuration: '2s' }} />
+        <circle cx="60" cy="54" r="1.5" fill="#ffffff" className="animate-pulse" style={{ animationDelay: '750ms', animationDuration: '2s' }} />
+      </svg>
+    </div>
+  </div>
+);
+
 const graphicComponents = {
   Search,
   HeartSound,
   Readsome,
-  BenchmarkSearch
+  BenchmarkSearch,
+  WebContextBuilder
 };
 
 const ProjectNode = ({ title, link, description, graphic }: { title: string, link: string, description: string[], graphic: any }) => {
