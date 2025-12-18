@@ -37,8 +37,7 @@
       "image": "/assets/semant.svg",
       "company": "Semant",
       "dates": "March 2024 – Present",
-      "skills": [
-      ],
+      "skills": [],
       "description": "Moving the forntier of human knowledge forward for the welfare of all - building next generation BCIs with AI."
     },
     {
@@ -158,6 +157,14 @@
         "Developed an app to detect heart sound abnormality with a novel (CNN+transformer) model - International ISEF Finialist 2021"
       ],
       "graphic": "HeartSound"
+    },
+    {
+      "title": "LLM Benchmark Search",
+      "link": "https://benchmark-context.vercel.app",
+      "description": [
+        "Instant, semantic search for LLM benchmarks (MMLU-Pro, GPQA, etc.) powered by Pinecone and Next.js."
+      ],
+      "graphic": "BenchmarkSearch"
     }
   ],
   "education": [
@@ -175,21 +182,37 @@
   "publications": [
     {
       "title": "Beluga: Boosted Explanatory Learning Using GPT Assistance",
-      "authors": ["A Kendre", "H Nguyen", "S Saha", "F Kabir"],
+      "authors": [
+        "A Kendre",
+        "H Nguyen",
+        "S Saha",
+        "F Kabir"
+      ],
       "venue": "arXiv preprint",
       "year": 2023,
       "link": "/papers/Beluga__Boosted_Explanatory_Learning_Using_GPT_Assistance.pdf"
     },
     {
       "title": "Structure-Preserving Graph Kernel for Brain Network Classification",
-      "authors": [ "J Yu", "Z Kong", "A Kendre", "H Peng", "C Yang", "L Sun", "A Leow", "L He" ],
+      "authors": [
+        "J Yu",
+        "Z Kong",
+        "A Kendre",
+        "H Peng",
+        "C Yang",
+        "L Sun",
+        "A Leow",
+        "L He"
+      ],
       "venue": "IEEE International Symposium on Biomedical Imaging (ISBI)",
       "year": 2022,
       "link": "https://ieeexplore.ieee.org/abstract/document/9761456/authors#authors"
     },
     {
       "title": "Computer Audition Arrhythmia Classification in Heart Sounds",
-      "authors": ["A Kendre"],
+      "authors": [
+        "A Kendre"
+      ],
       "venue": "International Science and Engineering Fair (ISEF)",
       "year": 2021,
       "link": "/papers/Arrhythmia_Classification_in_Heart_Sounds.pdf"

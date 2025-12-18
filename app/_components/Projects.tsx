@@ -41,13 +41,35 @@ const HeartSound = () => (
   </div>
 );
 
+
+
+const BenchmarkSearch = () => (
+  <div className="py-2 pl-2 my-1 w-24">
+    <div className="flex flex-col space-y-1.5">
+      <div className="flex flex-row rounded-md border border-neutral-800 p-1 items-center bg-neutral-900 shadow-sm">
+        <div className="flex w-full space-x-1 items-center">
+          <div className="w-2 h-2 rounded-full border border-neutral-600"></div>
+          <div className="h-1 w-10 bg-neutral-700 rounded-full"></div>
+        </div>
+      </div>
+      <div className="flex flex-wrap gap-1 px-0.5">
+        <div className="h-1.5 w-6 bg-purple-500/40 rounded-full"></div>
+        <div className="h-1.5 w-4 bg-blue-500/40 rounded-full"></div>
+        <div className="h-1.5 w-5 bg-green-500/40 rounded-full"></div>
+        <div className="h-1.5 w-3 bg-orange-500/40 rounded-full"></div>
+      </div>
+    </div>
+  </div>
+);
+
 const graphicComponents = {
   Search,
   HeartSound,
-  Readsome
+  Readsome,
+  BenchmarkSearch
 };
 
-const ProjectNode = ({ title, link, description, graphic }: { title: string, link: string, description: string[], graphic: any}) => {
+const ProjectNode = ({ title, link, description, graphic }: { title: string, link: string, description: string[], graphic: any }) => {
   const Graphic = graphicComponents[graphic as keyof typeof graphicComponents];
   return (
     <a
@@ -61,10 +83,10 @@ const ProjectNode = ({ title, link, description, graphic }: { title: string, lin
           <Graphic />
         </div>
         <div>
-            <h3 className="item-title">
-              {title}{" "}
-              <ArrowUpRight className="inline w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
-            </h3>
+          <h3 className="item-title">
+            {title}{" "}
+            <ArrowUpRight className="inline w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
+          </h3>
           <p className="item-description">{description[0]}</p>
         </div>
       </div>
