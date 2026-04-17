@@ -13,23 +13,33 @@ export default function Home() {
       <Projects />
       <Publications />
       <Education />
-      <svg>
-        <filter id="noiseFilter">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="1"
-            stitchTiles="stitch"
-          />
-          <feColorMatrix
-            in="colorNoise"
-            type="matrix"
-            values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"
-          />
-          <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
-          <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
-        </filter>
+      <svg width="0" height="0" aria-hidden className="absolute">
+        <defs>
+          <filter
+            id="noiseFilter"
+            x="-50%"
+            y="-50%"
+            width="200%"
+            height="200%"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="1"
+              stitchTiles="stitch"
+            />
+            <feColorMatrix
+              in="colorNoise"
+              type="matrix"
+              values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"
+            />
+            <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
+            <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
+          </filter>
+        </defs>
       </svg>
-      <p className="mt-8 text-sm text-gray-500">made by a human on earth</p>
+      <footer className="mt-16 pt-6 border-t border-white/5 flex justify-center">
+        <p className="item-description">made by a human on earth</p>
+      </footer>
     </main>
   );
 }

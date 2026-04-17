@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <div className="items-start justify-start w-full">
       <div id="blob"></div>
-      <div className="flex space-x-3 md:flex-row flex-col">
+      <div className="flex flex-col md:flex-row md:space-x-3 items-center md:items-start text-center md:text-left">
         <div className="relative w-16 h-16 m-auto md:m-0 flex-none">
           <Image
         src={imagev2}
@@ -52,10 +52,10 @@ export default function Header() {
         draggable={false}
           />
         </div>
-        <div className="items-start justify-start">
+        <div className="mt-3 md:mt-0">
           <h1 className="text-lg font-bold">{name}</h1>
           <p>{bio}</p>
-          <div className="flex flex-row my-2 space-x-2">
+          <div className="flex flex-row my-2 space-x-2 justify-center md:justify-start">
         {links.map((link, index) => (
           <Button
             key={index}
