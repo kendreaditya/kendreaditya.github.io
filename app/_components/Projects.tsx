@@ -98,12 +98,30 @@ const WebContextBuilder = () => (
   </div>
 );
 
+const FileExplorer = () => (
+  <div className="w-auto h-auto items-center justify-center min-w-[90px]">
+    <div className="h-16 w-16 rounded-xl flex items-center justify-center overflow-hidden relative">
+      <svg width="80" height="64" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <path d="M10 14 L14 18 L10 22" stroke="#ffffff" strokeWidth="1.2" strokeOpacity="0.85" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="20" y="15" width="32" height="4" rx="1" fill="#ffffff" fillOpacity="0.85" />
+        <path d="M10 28 L14 32 L10 36" stroke="#ffffff" strokeWidth="1.2" strokeOpacity="0.85" strokeLinecap="round" strokeLinejoin="round" transform="rotate(90 12 32)" />
+        <rect x="20" y="29" width="28" height="4" rx="1" fill="#ffffff" fillOpacity="0.85" />
+        <rect x="28" y="40" width="24" height="3" rx="1" fill="#ffffff" fillOpacity="0.55" />
+        <rect x="54" y="40" width="6" height="3" rx="1" fill="#ffffff" fillOpacity="0.3" />
+        <rect x="28" y="48" width="18" height="3" rx="1" fill="#ffffff" fillOpacity="0.55" />
+        <rect x="48" y="48" width="6" height="3" rx="1" fill="#ffffff" fillOpacity="0.3" />
+      </svg>
+    </div>
+  </div>
+);
+
 const graphicComponents = {
   Search,
   HeartSound,
   Readsome,
   BenchmarkSearch,
-  WebContextBuilder
+  WebContextBuilder,
+  FileExplorer
 };
 
 const ProjectNode = ({ title, link, description, graphic }: { title: string, link: string, description: string[], graphic: any }) => {

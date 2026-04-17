@@ -173,6 +173,14 @@
         "Web scraper CLI that converts websites to LLM-optimized markdown for context engineering."
       ],
       "graphic": "WebContextBuilder"
+    },
+    {
+      "title": "Logseq File Explorer",
+      "link": "https://github.com/kendreaditya/logseq-file-explorer",
+      "description": [
+        "Obsidian-style file explorer plugin for Logseq's left sidebar with right-click actions and drag-and-drop."
+      ],
+      "graphic": "FileExplorer"
     }
   ],
   "education": [
