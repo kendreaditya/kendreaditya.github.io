@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aditya Kendre</title>
+  <meta name="description" content="some info about me" />
+  <link rel="icon" href="/assets/favicon.png" />
+  <!-- Accent faces for the two words in the lead line. `text=` subsets both
+       families to the alphabet, so they arrive in one sub-KB request. This is the
+       page's only external dependency; if it fails, display=swap leaves the words
+       in the body monospace and nothing else changes. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Caveat&family=Righteous&family=Zilla+Slab&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz%20&display=swap" />
+  <!-- Theme follows the viewer's local clock: daylight hours light, otherwise
+       dark. Inline and in <head> so the attribute is set before first paint —
+       deferring this to the render pass would flash white on a night visit. -->
+  <script>
+    (function () {
+      var h = new Date().getHours();
+      document.documentElement.dataset.theme = h >= 7 && h < 19 ? "light" : "dark";
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #a3a3a3;
+      --rule: #c8c8c8;
+      --art: #3a3a3a;
+      color-scheme: light;
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0a0c11;
+      --fg: #ececef;
+      --muted: #85878f;
+      --rule: #2b2e36;
+      --art: #b8bcc6;
+      color-scheme: dark;
+    }
+
+    /* The logo set was picked to read on white, so dark flips who needs help:
+       the monochrome-black marks invert, and semant.svg — which is white artwork
+       inverted to black for the light theme — goes back to its original. */
+    :root[data-theme="dark"] img[src$="/claude.svg"],
+    :root[data-theme="dark"] img[src$="/codex.svg"],
+    :root[data-theme="dark"] img[src$="/config.svg"],
+    :root[data-theme="dark"] img[src$="/psu.png"] {
+      filter: invert(1);
+    }
+
+    :root[data-theme="dark"] img[src*="semant"] {
+      filter: none;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco,
+        "Cascadia Mono", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Fixed px, not ch, so changing the body size doesn't also resize the column. */
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+    }
+
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    /* Dashed divider, drawn as a gradient so the dash/gap ratio is controllable. */
+    .rule {
+      height: 1px;
+      margin: 1.15rem 0;
+      border: 0;
+      background-image: repeating-linear-gradient(to right,
+          var(--rule) 0 6px,
+          transparent 6px 11px);
+    }
+
+    /* Hero */
+    .name {
+      margin: 0 0 0.25rem;
+      font-size: 2em;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-socials {
+      word-spacing: 0.15em;
+    }
+
+    .hero-socials .sep {
+      color: var(--muted);
+    }
+
+    /* About */
+    .about p {
+      margin: 0 0 0.7rem;
+    }
+
+    .about p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about strong {
+      font-weight: 700;
+    }
+
+    .about [title] {
+      cursor: help;
+    }
+
+    /* One face per idea. Sizes are nudged per family because these are
+       proportional faces dropped into a monospace line — matching font-size
+       would not match apparent size. */
+    .f-learning {
+      font-family: "Caveat", cursive;
+      font-size: 1.5em;
+      line-height: 1;
+    }
+
+    /* working — a sturdy slab, sat between the script and the display face so the
+       three accents occupy three different registers rather than competing. */
+    .f-working {
+      font-family: "Zilla Slab", serif;
+      font-size: 1.1em;
+    }
+
+    /* The negative margin cancels the trailing letter-space that tracking adds
+       after the final letter, so the gap before the next word stays even. */
+    .f-cool {
+      font-family: "Righteous", cursive;
+      font-size: 1.1em;
+      letter-spacing: 0.16em;
+      margin-right: -0.16em;
+    }
+
+
+    /* Keep each logo glued to the company name it belongs to. */
+    .co {
+      white-space: nowrap;
+    }
+
+    /* Underline the name only — underlining .co would strike through the logo,
+       since text-decoration on a parent paints across inline replaced elements. */
+    .co-name {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+    }
+
+    /* Separator between stacked logos. .co-icon already supplies the gap on its
+       right, so this only needs to add the gap on the slash's own right. */
+    .icon-sep {
+      color: var(--muted);
+      margin-right: 0.28em;
+    }
+
+    .co-icon {
+      height: 1.1em;
+      width: auto;
+      max-width: 1.6em;
+      margin-right: 0.3em;
+      vertical-align: -0.22em;
+      object-fit: contain;
+    }
+
+    /* semant.svg is white artwork drawn for the dark main site, so it renders
+       invisible on this light page. Inverting turns it black; every other logo
+       in public/assets is coloured and needs no correction. */
+    .co-icon[src*="semant"] {
+      filter: invert(1);
+    }
+
+    /* meta.svg is a wide mark (288x191), so a shared height makes it read much
+       larger than the squarer logos. Scaled down to match them optically. */
+    .co-icon[src$="/meta.svg"] {
+      height: 0.8em;
+      vertical-align: -0.08em;
+    }
+
+    /* psu.png bakes ~30% padding into its canvas — the shield only fills 71% of
+       the height — so a shared height renders it visibly smaller. Scaled up by
+       roughly the inverse, with vertical-align re-centred for the taller box. */
+    .co-icon[src$="/psu.png"] {
+      height: 1.55em;
+      max-width: 1.8em;
+      vertical-align: -0.45em;
+    }
+
+    /* Work */
+    .work h2 {
+      margin: 0 0 0.6rem;
+      font-size: 1em;
+      font-weight: 700;
+    }
+
+    /* Block-level so long items wrap back to the left margin, with no hanging indent.
+       Slightly more padding than a one-line list needs, since these descriptions wrap. */
+    .work-item {
+      display: block;
+      padding: 0.25rem 0;
+      text-decoration: none;
+    }
+
+    .work-dash,
+    .work-desc {
+      color: var(--muted);
+    }
+
+    /* config.svg is a 2.1:1 wordmark, so the shared 1.6em cap would squash it. */
+    .co-icon[src$="/config.svg"] {
+      height: 0.95em;
+      max-width: 3em;
+      vertical-align: -0.1em;
+    }
+
+    .work-icon {
+      height: 1.05em;
+      width: auto;
+      margin-right: 0.25em;
+      vertical-align: -0.18em;
+    }
+
+    .work-title {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+    }
+
+    .work-item:hover .work-title {
+      text-decoration-thickness: 2px;
+    }
+
+    .colophon {
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 0.85em;
+      text-align: center;
+    }
+
+    /* Earthrise, rendered from semant.co/assets/moon-to-earth.jpg to a
+       180-column character grid. --afs is derived from the column width rather
+       than fixed, so the art spans exactly the text measure at any viewport:
+       180 columns x 0.6em advance = 108em, and .page's content box is
+       min(640px, 100vw) minus its 1.5rem gutters. Regenerating at a different
+       column count means changing that 108 to cols * 0.6. */
+    .art-wrap {
+      --afs: calc((min(640px, 100vw) - 3rem) / 108);
+      position: relative;
+      margin: 2.5rem 0 0;
+    }
+
+    .art {
+      margin: 0;
+      font-size: var(--afs);
+      line-height: 1;
+      white-space: pre;
+      color: var(--art);
+      overflow: hidden;
+    }
+
+    /* Labels are positioned in grid coordinates (--c column, --r row) rather
+       than stamped into the characters, so they can be set at their own size
+       without disturbing the monospace grid. Both anchor off --afs, so they
+       track the art exactly as it scales. */
+    .art-label {
+      position: absolute;
+      left: calc(var(--afs) * 0.6 * var(--c));
+      top: calc(var(--afs) * var(--r));
+      font-size: calc(var(--afs) * 1.5);
+      line-height: 1;
+      color: var(--fg);
+      white-space: pre;
+    }
+
+    .art-cite {
+      margin: 0.6rem 0 0;
+      color: var(--muted);
+      font-size: 0.85em;
+    }
+
+    .status {
+      color: var(--muted);
+    }
+
+    .status code {
+      color: var(--fg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div id="root">
+      <p class="status">Loading&hellip;</p>
+    </div>
+    <div class="art-wrap" aria-hidden="true">
+      <span class="art-label" style="--r: 3.1; --c: 63">[earth]</span>
+      <span class="art-label" style="--r: 10.4; --c: 9">[moon]</span>
+      <pre class="art">                                                                                       .:::::
+                                                                                   :+*%%@@@@@%#*=
+                                                                                 =#@@@@@@@@@@@@@@%*:
+                                                                               :#@@@@@%#*%%%%%@@@@@%+
+                                                                              =@@#*=-:.       -+%@@@@#
+                                                                             -%*-                :+#@@*
+                                                                            .*-                     -%@=
+                                                                            .:                       .#%
+                                                                                                       #:
+                                                                                                       =:
+
+
+                                                                  .:::=======+++===--=====+***+******+-::
+          ..===--=-:.   ..::                       ..-===+***##*###%%%%%%@@@@@@@@@@%@@@@@%@@@@%%#%*+#%*#***#***++=--::::.  .:::::-==--::..
+**#%#*%%%%##@@@@@@@@%%%#%%%#*+**+==+****++*****####%@@@@@%@@@%%@%##%##%#####%####*##*##%#*###**++*++#*+*+**%#**#%@@@%%%%%##%%%####%%%%%#*+++=+=+++==*+=+---::-::----=====:::
+@@@@@%%%@%%@@%@@@@@@@@@@@@@%%###%#****####**+*+==++++++*#++*===-=+=+***++*++--++***###***********#####+--=+****#%%%%%#%%%########*=++==****++*#########%%%%##*+=+++#%%**++**==-:-::.
+%%%##%%%%%#%%%%%%#%@%%%%%%@%%@@%#%@%#####*+*+-=+-=====:.-++##*+==++---=+*+======+==-::::---:-====+++=*#++*++#%####+++*##**####*##++-=+####*#######%##%%####%%%%%%%#########****#####
+**#**#*+*****=++*#*++#%%%%%%%@@@@@@@@@%%%%%@%%####%###%##########%%##*++***+*++*++=+++*+=++++*+=----=---==:-+=-=+**++**+*#*+****++**+*+=+=+#%###%%##%%%%#####%@@%%%%@@@@@@@%%##%@@@@
++%@%%###**#+-:.::::.   --=+#***##%%####@@@@@%%%%@%%@@@@%%#%%%%%%%%%%%######***+++===***++++***==-.         :-.    :==+*++***+=+**##*+++++*+*####%###*#%%######*##***%@%%%%@@@@%@%@@@
+:=++%%#%*+++===-=::::-====--===+*#*=+#*++*#****#########+++==-======-:-======-:--:=++***++***###*+*++====+*++==-++==----.-----==----=++==+*++######**####*#%%%#######%%%#%%%%%@%%%%@
+====***+++++++*+*=-+**+++++==*##=-=+#%####*+++=+**%######*#*###%%#*+=-==++++++++**+=-===--=:-+=+*+**++++***++=+=++----=--+++++===+++++++***###*+++++++=+*****#***#%####%*#%%%%######
+*#**+==*##++*+*##*%%##%%%###**#%%##%##%%#%%##%%%%%###%###%%@@@%%#***+++***+***++###*=:.  . ..  .-::=++**+*+++--====-:.::---+=+=+=====--==+*=+**#****###%###****#%###*#*####%%##*####
+****++++##%#**+#%%%#%%%@@%%@@%%%%@%+#@@#=:+**#####+.   .:==+*#%%#*++=-:-=#@%%%#+++*%%#####***+*+++=+*+=+++--==::::.-:.:::=-:-.:==--:--=========++=+=+****+****++++++******+*+**+***#
+-=+=-==++==+******+****+===+*#%==+%@%%@@%*==++**+**=:..        :--=-=++*####*%%###**####%####***+*#***=+++=====--.---... --...:..---=+****++*##****#*##+**=+*+=+====++**=++++***+*++
+         -+**++-::            ----+#%%%@%%#**+=+==++-:.                 :=#%%%%####****###%%###*######*#*####%%%#*++***++=+=++++##**+==-:-==+**+---=****+++++==++++*+++++=+**+++==**
+       -*##*+---:----         :-=++=----+########**#%*+*+++=======+**+=++#%%%####*++++++***+**###****###%%%#####*++*#%%##++****#%%#%*+++********++++=+++==++++++++***+=+++***=:::-=+
+     .=#%#=. .-++*#****#**+++==-:::.  -+*#*+=+++*###**++*#%%%#%%%%@@%#**++++++=+*+=+**#+**++*+=+++*******##*##***#**####****####***#**###*****+++++-::--:-=======+++==++==-=***+=++=
+   :=+###++==+++*###**###***+=:..:-==+####***###**%%%##***#%%**%###%###########****###*#####***###******+*#*#**********+*++++*******++++++==-==-:::--::::-::---=++===---==++=++====+
+=-=+**+***+=---:--===. :..=++=:-+*####**#*#****#**#%%%@%%#%@%##%%%%%%%##%%%#%%%**##*#%%*=--+*#%%##*########***###**###%##**#####+++====+++++++*++==+++**+=+###**+++++++=++++=-=----:
++*+++=-=--:  .:.-----::==**#%#*#%%@#+=--====-====+++*#%%%#%###*#*+=-.:-:=-=+**##******#+=*###%%##*******+***++******###%%%%%@@@%%##*****#*******#****++=++++**+++***+++**++==----===
+---====++=++==+*#%%%%%%%%#####%@@%##**#*+=++++*####**+=+=++=++==--: ..:--+********##*+******#*+***#####%#####*##**********++*###%%#%##*##*************#*++++=++++*+**++*++=+++====++
+-======++*******#%%%%%%%###*#%%%%#**##****#####%%@%%#++=--====-=--:::.-=+**#%#*====*##*****#*#%%##*#%#######*####**#**+*+++++++***+++++*******+****+++++*****##***+++++****++++====+
++++*#+===++++*++*******#**##%%##*****++++**###*##%@@@@#*+-+=-=-:---=-=+***#####*++***+++**#######*###*##***++*****#%##****++==+=-:    .:::-==+++==+====+++**##*****+*+===++++++++=++
+==+==++**#******#**#####***#**+##**###****++++=+*+*##%%##*###%%#*####*****+=====+++***+++*###*++*++++******++=+++*****##*##**+++++++++=++=++*+++++++*+++++++****#*********+*+==-==++
+-=+=-=+++*###******#*******++***####**#**##**+**+*+=+=++=+*+*#%%%%##**++**##*#####%%%%%%%%%%%#*#######**++***+*####**######%%%%%###***#**#********##*+***+*******++=--=+*+*++=+++=+*
+=++++++*+++++******#***#*****##***##*####%#####****+==++++++**+*####*####%%###%####################%%%%%##*##*##############***********+++++**#########***++******+*+==******+======
+:::----=====-====+++**##*###*********##*#######***####**##****#%%#####**######*###%#**+++==++++=+==**####****+***++********#**#####******++********#**##*#*##*********+*+++**++=====
+-:-=====+++++++*+********###**##**#####***##****#***#**###%################%%%####**+++==++++++***+===+++=+****+++=+*******+**##%%###########################**#******+********++++*
+..--====++**++**********#######***#**##############%%##%%#####*#*##########*#***++++*++++***++************#*##**#******#*+++**##########%%#%%%###**+*#######********#**#*##***+**++*
+.:-==+++++++++*++*******###############%%#########%%############%%%##*******#****+******+**+***++++++****#########*****#*#####*#****##############*******######******###*##*********
+:::-===++++++++++++***#**###################**############%%%%%%#####**#*####******#*********+*++++++++******#******#********************########%###*#**#*####**#***#******+***#***
+  :--==+++=++++=+=++******##############%####################%%%######**######*#**###************+**+********+****+****++++*******++**+*****##########*************************+++**
+  .:----=--=======++++*********#############################*#####*******#######*#**###**###*************#*********++**+++*******+++++++*++**************+**++++*****+******++++++++
+  :::---::-------===+++++***+*****#*#***###****#****#**********************************##***********************+*+*+++++++*+*+++++=+++++++++++++******++++*+++++++*++++++++=++=+==+
+  ::.::::::-=----========+++++++++**************+*++*+++**+*+++++*++++++*++**+****************++*****+*+++++++++++++++++++++++++++=+=========+++++++++++++++++++=+=+=++=======-==-==
+        .....::::..:------=-=======++++++++++++==========+======++========++++++++++++*++++++++=+++++=++++++++=========================-===--=====++====-=========---:--::::.:.::::-
+                          ...:..::::::--------:-:::::::::::::::-------:::---============-=========+===---=====---:::--------------:---:-:::::::-:-::::.:::.:......                ..
+                                                                . ....      .::::::::.:::::.::::::-:..   .::.::: .  ..:...... ........   . .     .
+
+
+
+
+
+::::.......
+====-=-==---::::.  .......:..  ......
++++++++++++++=+===+++++++++===++++++==---:. .                ... .
+***************#**##%%%%%%%#%%%%%%%#####***+=-:          ...::::.. ....:..    ..                                                      ::.
+#%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%##*+=----------------::::-:::::::::...                                        ..:--==++*#*##*+=-...
++*************************************************+=====---::::::::::::......:.......                                      .::---=======+*##*+-::.</pre>
+    </div>
+    <p class="art-cite">
+      earth, seen from the moon &mdash;
+      <a href="https://www.tobyord.com/earth" target="_blank" rel="noopener">tobyord.com/earth</a>
+      <br />
+      layout after
+      <a href="https://nlevine.org/" target="_blank" rel="noopener">nlevine.org</a>
+    </p>
+    <footer class="colophon">made by a human on earth</footer>
+  </div>
+
+  <!-- Universal footer: the draggable era timeline. Shared with every archived
+       version, so it is loaded rather than inlined. -->
+  <script src="/timeline-bar.js" defer></script>
+
+  <noscript>
+    <div class="page">
+      <p class="status">This page renders <code>data.json</code> in the browser, so it needs JavaScript enabled.</p>
+    </div>
+  </noscript>
+
+  <script>
+    // Social links render as text, not icons. Keyed by the `icon` values in data.json.
+    const SOCIAL_LABELS = {
+      Github: "github",
+      GraduationCap: "scholar",
+      Mail: "email",
+      Linkedin: "linkedin",
+      Twitter: "twitter",
+      X: "twitter",
+    };
+
+    const esc = (s) =>
+      String(s ?? "").replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      }[c]));
+
+    // "Kimberly-Clark - Global Innovation Team" -> "Kimberly-Clark"
+    const shortName = (s) => String(s ?? "").split(/\s+[-–—]\s+/)[0].trim();
+
+    // Everything after the first dash, if any: "Readsome - a reading app" -> "a reading app"
+    const tagline = (s) => {
+      const parts = String(s ?? "").split(/\s+[-–—]\s+/);
+      return parts.length > 1 ? parts.slice(1).join(" - ").trim() : "";
+    };
+
+    const trimPeriod = (s) => String(s ?? "").trim().replace(/\s*\.+$/, "");
+
+    // Word -> accent face. The interest links deliberately carry none: six display
+    // faces in one sentence read as a type specimen rather than as a voice.
+    const ACCENT_FONTS = {
+      "learning": "f-learning",
+      "working": "f-working",
+      "cool": "f-cool",
+    };
+
+    // Markdown [text](url) -> anchor, with the label's accent face if it has one
+    // and any logos registered for that URL. Escaping runs FIRST, so both the
+    // label and the href are already inert by the time they're substituted in.
+    const mdLinks = (s, iconsFor) =>
+      esc(s).replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, text, href) => {
+        const cls = ACCENT_FONTS[text.toLowerCase()];
+        const icons = (iconsFor && iconsFor(href)) || [];
+        const anchor =
+          `<a href="${href}" target="_blank" rel="noopener"` +
+          (cls ? ` class="${cls}"` : "") +
+          `>${text}</a>`;
+        if (!icons.length) return anchor;
+        // nowrap so a logo never ends a line without the name it belongs to.
+        return (
+          `<span class="co">` +
+          icons
+            .map((i) => `<img class="co-icon" src="${esc(i)}" alt="" />`)
+            .join('<span class="icon-sep">/</span>') +
+          anchor +
+          `</span>`
+        );
+      });
+
+    // Wrap accent words in running text. Longest phrases first and a SINGLE pass,
+    // so a replacement's own class name (e.g. "f-cool") can't be rematched.
+    const ACCENT_RE = new RegExp(
+      "\\b(" +
+      Object.keys(ACCENT_FONTS).sort((a, b) => b.length - a.length).join("|") +
+      ")\\b",
+      "gi"
+    );
+
+    const accent = (s) =>
+      esc(s).replace(ACCENT_RE, (m) => `<span class="${ACCENT_FONTS[m.toLowerCase()]}">${m}</span>`);
+
+    const joinList = (items) => {
+      if (!items.length) return "";
+      if (items.length === 1) return items[0];
+      try {
+        return new Intl.ListFormat("en", { style: "long", type: "conjunction" }).format(items);
+      } catch (e) {
+        return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
+      }
+    };
+
+    function socialLink(link) {
+      const label = SOCIAL_LABELS[link.icon] || String(link.icon || "link").toLowerCase();
+      const isMail = String(link.href || "").startsWith("mailto:");
+      const target = isMail ? "" : ' target="_blank" rel="noopener"';
+      return `<a href="${esc(link.href)}"${target}>&rarr; ${esc(label)}</a>`;
+    }
+
+    function workItem({ href, title, desc, hint, icons }) {
+      return (
+        `<a href="${esc(href)}" target="_blank" rel="noopener" class="work-item"` +
+        (hint ? ` title="${esc(hint)}"` : "") +
+        `>` +
+        `<span class="work-dash">-</span> ` +
+        (icons || []).map((s) => `<img class="work-icon" src="${esc(s)}" alt="" />`).join("") +
+        `<span class="work-title">${esc(title)}</span>` +
+        (desc ? ` <span class="work-desc">(${esc(desc)})</span>` : "") +
+        `</a>`
+      );
+    }
+
+    // Applied in order, so the longer phrases win before the shorter ones.
+    // data.json keeps the full titles; only the display form is shortened.
+    const TITLE_ABBREVIATIONS = [
+      [/\bMachine Learning Engineer\b/gi, "MLE"],
+      [/\bSoftware Engineering\b/gi, "SWE"],
+      [/\bSoftware Engineer\b/gi, "SWE"],
+      [/\bUndergraduate\b/gi, "Undergrad"],
+    ];
+
+    const shortTitle = (title) =>
+      TITLE_ABBREVIATIONS.reduce((s, [re, to]) => s.replace(re, to), String(title ?? ""));
+
+    // "<role> @ <logo><company>". Only the logo and company name are wrapped in
+    // .co, so the role may wrap to the next line but the logo never separates
+    // from its company. The unabbreviated title, dates and description all live
+    // in the hover title.
+    function company(e) {
+      const hint = [e.title, e.dates, e.description].filter(Boolean).join(" · ");
+      return (
+        `<span title="${esc(hint)}">${esc(shortTitle(e.title))} @ ` +
+        `<span class="co">` +
+        (e.image ? `<img class="co-icon" src="${esc(e.image)}" alt="" />` : "") +
+        `<span class="co-name">${esc(shortName(e.company))}</span></span></span>`
+      );
+    }
+
+    function render(data) {
+      const info = data.personalInfo || {};
+      const experience = data.experience || [];
+      const projects = data.projects || [];
+      const publications = data.publications || [];
+      const education = data.education || [];
+
+      if (info.name) document.title = info.name;
+
+      // --- Hero ---
+      const socials = (info.links || []).map(socialLink);
+      const hero =
+        `<header class="hero">` +
+        `<h1 class="name">${esc(info.name || "")}</h1>` +
+        (socials.length
+          ? `<div class="hero-socials">${socials.join(' <span class="sep">|</span> ')}</div>`
+          : "") +
+        `</header>`;
+
+      // --- About ---
+      const mail = (info.links || []).find((l) => String(l.href || "").startsWith("mailto:"));
+
+      const paragraphs = [];
+
+      // Lead line, then interests, then the roles. Which roles count as current
+      // is an explicit `"current": true` in data.json rather than array order or
+      // a "Present" date test — several past-tense roles still read as Present.
+      if (info.bio) {
+        paragraphs.push(`<p>${accent(trimPeriod(info.bio))}.</p>`);
+      }
+
+      if (info.interests) {
+        paragraphs.push(`<p>${mdLinks(info.interests)}</p>`);
+      }
+
+      const current = experience.filter((e) => e.current);
+      const past = experience.filter((e) => !e.current);
+
+      if (current.length) {
+        paragraphs.push(
+          `<p><strong>Currently:</strong> ${joinList(current.map(company))}.</p>`
+        );
+      }
+
+      if (past.length) {
+        paragraphs.push(
+          `<p><strong>Previously:</strong> ${joinList(past.map(company))}.</p>`
+        );
+      }
+
+      if (education.length) {
+        // Not trimmed — degree abbreviations ("B.S.") end in a meaningful period.
+        const school = education[0];
+        const logo = school.image
+          ? `<img class="co-icon" src="${esc(school.image)}" alt="" />`
+          : "";
+        paragraphs.push(
+          `<p><strong>Studied:</strong> ${esc(school.description)} at ` +
+          `<span class="co">${logo}<span class="co-name">${esc(school.title)}</span></span>.</p>`
+        );
+      }
+
+      if (mail) {
+        paragraphs.push(
+          `<p>Please <a class="email-cta" href="${esc(mail.href)}">send me an email</a>. ` +
+          `I'd love to hear from you.</p>`
+        );
+      }
+
+      const projectItem = (p) =>
+        workItem({
+          href: p.link,
+          title: shortName(p.title),
+          desc: trimPeriod((p.description && p.description[0]) || tagline(p.title)),
+          icons: p.icons,
+        });
+
+      // `"setup": true` projects are described in prose by personalInfo.setup
+      // rather than listed — they're how the work gets done, not the work. Their
+      // logos are attached by matching the sentence's URLs back to the entries.
+      const iconsByLink = new Map(
+        projects.filter((p) => p.icons).map((p) => [esc(p.link), p.icons])
+      );
+
+      if (info.setup) {
+        paragraphs.push(`<p>${mdLinks(info.setup, (href) => iconsByLink.get(href))}</p>`);
+      }
+
+      const about = `<section class="about">${paragraphs.join("")}</section>`;
+
+      // --- Made / Research ---
+      const listSection = (heading, items) =>
+        items.length
+          ? `<section class="work">` +
+          `<h2>${heading}</h2>` +
+          `<div class="work-list">${items.join("")}</div>` +
+          `</section>`
+          : "";
+
+      const work = listSection(
+        "Some things I've made:",
+        projects.filter((p) => !p.setup).map(projectItem)
+      );
+
+      const research = listSection(
+        "Research:",
+        publications.map((p) =>
+          workItem({
+            href: p.link,
+            title: p.title,
+            desc: [p.venue, p.year].filter(Boolean).join(", "),
+            hint: (p.authors || []).join(", "),
+          })
+        )
+      );
+
+      // The colophon lives below the art, outside #root, so it isn't rendered here.
+      const rule = `<hr class="rule" />`;
+      document.getElementById("root").innerHTML =
+        hero + rule + about + rule + work + (research ? rule + research : "");
+    }
+
+    fetch("./data.json", { cache: "no-cache" })
+      .then((res) => {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(render)
+      .catch((err) => {
+        document.getElementById("root").innerHTML =
+          `<p class="status">Couldn't load <code>data.json</code> (${esc(err.message)}). ` +
+          `Serve this file over HTTP &mdash; e.g. <code>npx serve public</code> &mdash; ` +
+          `rather than opening it straight from disk.</p>`;
+      });
+  </script>
+</body>
+
+</html>

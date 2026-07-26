@@ -1,0 +1,67 @@
+{
+  "note": "Every version of this site, oldest first. The era with the NEWEST date is the current one: it is what gets served at / and what the timeline marks as 'now'. Nothing is hand-flagged as live — shipping a redesign means adding an entry dated today and rebuilding. Historical eras are built once from their own commit and frozen into public/archive/<id>/ (see scripts/archive-era.mjs), each anchored at the LAST commit of its span so it is captured fully developed rather than on its first day.",
+  "redirects": {
+    "/auto-complete.html": "/archive/2026-next/auto-complete.html"
+  },
+  "eras": [
+    {
+      "id": "2021-cra",
+      "label": "Create React App",
+      "date": "2021-04-30",
+      "dateEnd": "2021-06-01",
+      "commit": "bc8125c",
+      "blurb": "The first site — a Create React App scaffold with a resume PDF bolted on. Four commits over five weeks.",
+      "build": "npm install --legacy-peer-deps && NODE_OPTIONS=--openssl-legacy-provider npx react-scripts build",
+      "output": "build",
+      "prepare": "homepage",
+      "archived": true
+    },
+    {
+      "id": "2021-gitfolio",
+      "label": "gitfolio",
+      "date": "2021-10-06",
+      "dateEnd": "2024-03-10",
+      "commit": "35a8eac",
+      "blurb": "A generated portfolio from gitfolio: one static index.html listing every public repo. It stood for two and a half years — the 2022 'fresh start' commit rewrote the line endings and added a LaTeX resume, but left the rendered page byte-for-byte identical.",
+      "build": null,
+      "files": [
+        "index.html",
+        "index.css",
+        "config.json",
+        "config.js"
+      ],
+      "archived": true
+    },
+    {
+      "id": "2024-next",
+      "label": "Next.js, as launched",
+      "date": "2024-03-10",
+      "dateEnd": "2026-05-10",
+      "commit": "0eeb5a2",
+      "blurb": "The current generation on its launch day: Next.js App Router, dark, data read from public/resume.ts — 48 commits before it became what it was at the end.",
+      "build": "npm install && npx next build",
+      "output": "out",
+      "prepare": "basePath",
+      "archived": true
+    },
+    {
+      "id": "2026-next",
+      "label": "Next.js, as it ended",
+      "date": "2026-05-10",
+      "commit": "8f183a0",
+      "blurb": "The same generation two years on: data moved to data.json, every logo redrawn, a hidden research essay at /auto-complete.",
+      "build": "npm install && npx next build",
+      "output": "out",
+      "prepare": "basePath",
+      "archived": true
+    },
+    {
+      "id": "2026-minimal",
+      "label": "minimal",
+      "date": "2026-07-25",
+      "source": "public/minimal.html",
+      "blurb": "One monospace column that reads data.json in the browser, a clock-driven theme, and an Earthrise rendered in ASCII.",
+      "archived": true
+    }
+  ]
+}

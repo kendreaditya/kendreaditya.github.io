@@ -1,7 +1,9 @@
 {
   "personalInfo": {
     "name": "Aditya Kendre",
-    "bio": "Scaling ideas while learning and building cool things - founding team at Semant and Gaudiya Kirtan.",
+    "bio": "Learning and working on cool things",
+    "setup": "I keep my setup public — [.config](https://github.com/kendreaditya/.config) for dotfiles and a cross-platform dev environment, and [agent skills](https://github.com/kendreaditya/.config/tree/main/claude/skills) for Claude Code and Codex.",
+    "interests": "Interested in [epistemology](https://en.wikipedia.org/wiki/Epistemology), [effective altruism](https://en.wikipedia.org/wiki/Effective_altruism), [eudaimonia](https://en.wikipedia.org/wiki/Eudaimonia), [philosophy of mind](https://en.wikipedia.org/wiki/Philosophy_of_mind), [longevity](https://en.wikipedia.org/wiki/Life_extension), and using technology to improve the [human condition](https://en.wikipedia.org/wiki/Human_condition).",
     "image": "/assets/akendre.jpg",
     "imagev2": "/assets/akendre-v2.jpg",
     "links": [
@@ -12,6 +14,10 @@
       {
         "icon": "GraduationCap",
         "href": "https://scholar.google.com/citations?user=sx_8qkEAAAAJ&hl=en"
+      },
+      {
+        "icon": "Linkedin",
+        "href": "https://www.linkedin.com/in/kendreaditya/"
       },
       {
         "icon": "Mail",
@@ -25,6 +31,7 @@
       "image": "/assets/meta.svg",
       "company": "Meta",
       "dates": "March 2025 – Present",
+      "current": true,
       "skills": [
         "C++",
         "Hack",
@@ -37,8 +44,9 @@
       "image": "/assets/semant.svg",
       "company": "Semant",
       "dates": "March 2024 – Present",
+      "current": true,
       "skills": [],
-      "description": "Moving the forntier of human knowledge forward for the welfare of all - building next generation BCIs with AI."
+      "description": "Moving the frontier of human knowledge forward for the welfare of all - building next generation BCIs with AI."
     },
     {
       "title": "Lead Software Engineer",
@@ -138,7 +146,7 @@
       "title": "Readsome - a reading app",
       "link": "https://readsome.semant.co/",
       "description": [
-        "An app that helps you achive your reading goals with state-of-the-art speach synthesis."
+        "An app that helps you achieve your reading goals with state-of-the-art speech synthesis."
       ],
       "graphic": "Readsome"
     },
@@ -146,7 +154,7 @@
       "title": "Semant Search - an answer engine",
       "link": "https://search.semant.co/",
       "description": [
-        "An LLM first-engine built to give answers with access to websites, books, videos, and much more."
+        "An LLM-first engine built to give answers with access to websites, books, videos, and much more."
       ],
       "graphic": "Search"
     },
@@ -154,7 +162,7 @@
       "title": "Heart Sound Abnormality Detection",
       "link": "https://github.com/kendreaditya/heartface",
       "description": [
-        "Developed an app to detect heart sound abnormality with a novel (CNN+transformer) model - International ISEF Finialist 2021"
+        "Developed an app to detect heart sound abnormality with a novel (CNN+transformer) model - International ISEF Finalist 2021"
       ],
       "graphic": "HeartSound"
     },
@@ -181,6 +189,31 @@
         "Obsidian-style file explorer plugin for Logseq's left sidebar with right-click actions and drag-and-drop."
       ],
       "graphic": "FileExplorer"
+    },
+    {
+      "title": ".config - dotfiles",
+      "link": "https://github.com/kendreaditya/.config",
+      "description": [
+        "Personal dotfiles and a cross-platform dev environment, installable on macOS, Linux, or Windows with one command."
+      ],
+      "graphic": "Dotfiles",
+      "setup": true,
+      "icons": [
+        "/assets/config.svg"
+      ]
+    },
+    {
+      "title": "Agent skills",
+      "link": "https://github.com/kendreaditya/.config/tree/main/claude/skills",
+      "description": [
+        "75 custom skills for Claude Code and Codex, versioned alongside the rest of my dotfiles."
+      ],
+      "graphic": "Skills",
+      "setup": true,
+      "icons": [
+        "/assets/claude.svg",
+        "/assets/codex.svg"
+      ]
     }
   ],
   "education": [
