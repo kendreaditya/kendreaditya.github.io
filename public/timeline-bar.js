@@ -59,14 +59,16 @@
     "  z-index:2147483000;display:flex;flex-direction:column;align-items:center;",
     "  font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Monaco,Consolas,monospace;",
     "  font-size:11px;line-height:1;",
-    "  --fg:#111;--muted:#8a8a8f;--glass:rgba(255,255,255,.62);",
-    "  --edge:rgba(255,255,255,.7);--ring:rgba(0,0,0,.08);",
-    "  --shadow:0 8px 32px rgba(0,0,0,.14);--sheen:rgba(255,255,255,.75);",
+    "  --fg:#111;--muted:#68686e;--glass:rgba(255,255,255,.26);",
+    "  --glass-top:rgba(255,255,255,.58);--glass-bottom:rgba(255,255,255,.12);",
+    "  --edge:rgba(255,255,255,.78);--ring:rgba(0,0,0,.09);",
+    "  --shadow:0 10px 38px rgba(0,0,0,.16);--sheen:rgba(255,255,255,.92);",
     "}",
     ".wrap[data-theme=dark]{",
-    "  --fg:#f2f2f5;--muted:#83858d;--glass:rgba(18,20,26,.58);",
-    "  --edge:rgba(255,255,255,.12);--ring:rgba(0,0,0,.5);",
-    "  --shadow:0 8px 32px rgba(0,0,0,.5);--sheen:rgba(255,255,255,.10);",
+    "  --fg:#f2f2f5;--muted:#a3a5ad;--glass:rgba(13,15,21,.34);",
+    "  --glass-top:rgba(255,255,255,.16);--glass-bottom:rgba(8,10,16,.24);",
+    "  --edge:rgba(255,255,255,.2);--ring:rgba(0,0,0,.52);",
+    "  --shadow:0 12px 42px rgba(0,0,0,.52);--sheen:rgba(255,255,255,.30);",
     "}",
 
     /* Preview rises out of the pill rather than sitting above it permanently. */
@@ -77,30 +79,42 @@
     "}",
     ".wrap.open .peek{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}",
     ".card{",
-    "  display:block;width:min(300px,78vw);overflow:hidden;",
+    "  position:relative;isolation:isolate;display:block;width:min(300px,78vw);overflow:hidden;",
     "  border-radius:14px;border:1px solid var(--edge);",
-    "  background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(180%);",
-    "  backdrop-filter:blur(22px) saturate(180%);",
-    "  box-shadow:var(--shadow),0 0 0 1px var(--ring),inset 0 1px 0 var(--sheen);",
+    "  background:linear-gradient(145deg,var(--glass-top),var(--glass) 42%,var(--glass-bottom));",
+    "  -webkit-backdrop-filter:blur(30px) saturate(190%) brightness(1.06);",
+    "  backdrop-filter:blur(30px) saturate(190%) brightness(1.06);",
+    "  box-shadow:var(--shadow),0 0 0 1px var(--ring),inset 0 1px 1px var(--sheen),inset 0 -1px 1px rgba(0,0,0,.08);",
     "  text-decoration:none;color:var(--fg);",
     "}",
-    ".card img{display:block;width:100%;height:auto}",
+    ".card::before,.pill::before{content:'';position:absolute;z-index:3;pointer-events:none;",
+    "  background:linear-gradient(115deg,rgba(255,255,255,.38),transparent 28% 68%,rgba(255,255,255,.16));",
+    "  border-radius:inherit;inset:1px;opacity:.72}",
+    ".card .visual{position:relative;aspect-ratio:4/3;overflow:hidden;",
+    "  background:linear-gradient(145deg,var(--glass-top),var(--glass-bottom))}",
+    ".card img{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover}",
+    ".card .shot-fallback{position:absolute;z-index:0;inset:0;display:flex;align-items:center;justify-content:center;",
+    "  color:var(--muted);font-weight:700;letter-spacing:.02em}",
+    ".card:not(.no-shot) .shot-fallback{display:none}",
+    ".card.no-shot img{display:none}",
     ".card .cap{display:flex;gap:6px;align-items:baseline;padding:7px 10px;",
-    "  border-top:1px solid var(--edge);white-space:nowrap;overflow:hidden}",
+    "  position:relative;z-index:1;border-top:1px solid var(--edge);white-space:nowrap;overflow:hidden}",
     ".card .cap b{font-weight:700}",
     ".card .cap span{color:var(--muted);font-size:10px}",
 
     /* The pill itself: barely there until you reach for it. */
     ".pill{",
-    "  display:flex;align-items:center;max-width:min(420px,88vw);",
+    "  position:relative;isolation:isolate;display:flex;align-items:center;max-width:min(420px,88vw);",
     "  padding:7px 9px;border-radius:999px;",
-    "  background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(180%);",
-    "  backdrop-filter:blur(22px) saturate(180%);",
+    "  background:linear-gradient(145deg,var(--glass-top),var(--glass) 44%,var(--glass-bottom));",
+    "  -webkit-backdrop-filter:blur(30px) saturate(190%) brightness(1.06);",
+    "  backdrop-filter:blur(30px) saturate(190%) brightness(1.06);",
     "  border:1px solid var(--edge);",
-    "  box-shadow:var(--shadow),0 0 0 1px var(--ring),inset 0 1px 0 var(--sheen);",
+    "  box-shadow:var(--shadow),0 0 0 1px var(--ring),inset 0 1px 1px var(--sheen),inset 0 -1px 1px rgba(0,0,0,.08);",
     "  overflow-x:auto;scrollbar-width:none;cursor:grab;",
-    "  opacity:.4;transition:opacity .26s ease,box-shadow .26s ease;",
+    "  opacity:.86;transition:opacity .26s ease,box-shadow .26s ease;",
     "}",
+    ".pill>*{position:relative;z-index:4}",
     ".pill::-webkit-scrollbar{display:none}",
     ".pill.dragging{cursor:grabbing}",
     ".wrap.open .pill{opacity:1}",
@@ -129,6 +143,10 @@
     ".era.peeking .dot{transform:scale(1.45)}",
     ".era:focus-visible{outline:2px solid var(--fg);outline-offset:2px}",
 
+    "@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){",
+    "  .card,.pill{background:var(--glass-top)}",
+    "}",
+
     "@media (prefers-reduced-motion:reduce){*{transition:none!important}}",
   ].join("\n");
 
@@ -149,10 +167,16 @@
     peek.className = "peek";
     var card = document.createElement("a");
     card.className = "card";
+    var visual = document.createElement("div");
+    visual.className = "visual";
     var img = document.createElement("img");
+    var shotFallback = document.createElement("div");
+    shotFallback.className = "shot-fallback";
     var cap = document.createElement("div");
     cap.className = "cap";
-    card.appendChild(img);
+    visual.appendChild(img);
+    visual.appendChild(shotFallback);
+    card.appendChild(visual);
     card.appendChild(cap);
     peek.appendChild(card);
 
@@ -208,8 +232,15 @@
       if (shown) shown.el.classList.remove("peeking");
       shown = item;
       item.el.classList.add("peeking");
-      img.src = "/archive/" + item.era.id + "/preview.png";
+      // The live era is served at / and has no frozen archive directory yet.
+      // Show a labelled glass fallback while a screenshot loads, and retain it
+      // if an old archive is ever missing its preview instead of showing a broken
+      // image icon.
+      card.classList.add("no-shot");
+      shotFallback.textContent = item.era.label;
       img.alt = item.era.label;
+      img.src = item.era.preview ||
+        (item.era.newest ? "/preview.svg" : "/archive/" + item.era.id + "/preview.png");
       cap.innerHTML = "";
       var b = document.createElement("b");
       b.textContent = item.era.label;
@@ -219,6 +250,8 @@
       cap.appendChild(s);
       card.href = item.href;
     }
+    img.addEventListener("load", function () { card.classList.remove("no-shot"); });
+    img.addEventListener("error", function () { card.classList.add("no-shot"); });
     preview(current);
 
     items.forEach(function (i) {
