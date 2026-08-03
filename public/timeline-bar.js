@@ -366,8 +366,9 @@
       }
     });
 
-    // Whichever dot receives the first click only expands the timeline. Once
-    // expanded, the anchors retain their native one-click navigation behavior.
+    // Touch has no hover, so its first tap only expands the timeline. A precise
+    // pointer expands on hover before click, leaving every desktop click as
+    // native one-click navigation.
     pill.addEventListener("click", function (e) {
       if (!expanded) {
         e.preventDefault();
@@ -376,10 +377,11 @@
     });
 
     if (finePointer) {
-      wrap.addEventListener("pointerleave", function () { open(false); });
+      wrap.addEventListener("pointerenter", function () { setExpanded(true); });
+      wrap.addEventListener("pointerleave", function () { setExpanded(false); });
     }
     wrap.addEventListener("focusout", function (e) {
-      if (!wrap.contains(e.relatedTarget)) open(false);
+      if (!wrap.contains(e.relatedTarget)) setExpanded(false);
     });
 
     document.addEventListener("pointerdown", function (e) {
