@@ -8,11 +8,10 @@
  * the URL, and marks it — so on kendre.me it rests on the live site, and inside
  * /archive/<id>/ it rests on that era.
  *
- * The labelled eras stay geometrically stable so neither scrolling nor opening
- * a preview can move a different link beneath a stationary pointer. Hovering a
- * precise pointer raises a preview and clicking navigates. On touch screens the
- * first tap previews and the large preview card is the deliberate navigation
- * target.
+ * It starts as a compact row of dots. The first click expands the year labels;
+ * every labelled era is then a normal direct link. Precise pointers may hover an
+ * expanded era for a preview, while touch screens omit previews entirely so a
+ * link tap cannot be mistaken for a selection step.
  *
  * Everything lives in a shadow root. That matters because this is injected into
  * three historically different sites (a 2021 CRA bundle, a gitfolio page, a
@@ -132,8 +131,8 @@
     ".card .cap span{color:var(--muted);font-size:10px}",
     ".card .cap .go{margin-left:auto;color:var(--fg);font-weight:700}",
 
-    /* The pill itself. Labels never collapse: expanding around the centred pill
-       used to move neighbouring links underneath a stationary pointer. */
+    /* The pill starts as a compact row of dots. Its first click reveals labels;
+       only subsequent clicks follow an era link. */
     ".pill{",
     "  position:relative;isolation:isolate;display:flex;align-items:center;max-width:min(420px,88vw);",
     "  padding:7px 9px;border-radius:999px;",
@@ -143,7 +142,7 @@
     "  border:1px solid var(--edge);",
     "  box-shadow:var(--shadow),0 0 0 1px var(--ring),inset 0 1px 0 var(--inner);",
     "  overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain;",
-    "  transition:box-shadow .26s ease;",
+    "  transition:box-shadow .26s ease,max-width .3s cubic-bezier(.2,.8,.2,1);",
     "}",
     ".pill::-webkit-scrollbar{display:none}",
 
@@ -159,9 +158,11 @@
     "  transition:transform .24s cubic-bezier(.2,.8,.2,1),background .24s ease;",
     "}",
     ".era .yr{",
-    "  display:inline-block;max-width:5.5em;opacity:1;margin-left:5px;",
+    "  display:inline-block;max-width:0;opacity:0;margin-left:0;overflow:hidden;",
     "  font-variant-numeric:tabular-nums;",
+    "  transition:max-width .3s cubic-bezier(.2,.8,.2,1),opacity .18s ease,margin .3s ease;",
     "}",
+    ".wrap.expanded .era .yr{max-width:5.5em;opacity:1;margin-left:5px}",
     ".era[aria-current=true]{color:var(--fg);font-weight:700}",
     ".era[aria-current=true] .dot{transform:scale(1.45)}",
     ".era[aria-expanded=true]{color:var(--fg);background:rgba(127,127,127,.14)}",
@@ -186,8 +187,10 @@
     "  .pill{max-width:calc(100vw - 20px);padding:3px 4px;touch-action:pan-x;scroll-snap-type:x proximity}",
     "  .era{min-width:44px;min-height:44px;padding:0 10px;scroll-snap-align:center}",
     "  .era .dot{width:7px;height:7px}",
-    "  .era .yr{margin-left:6px}",
+    "  .wrap.expanded .era .yr{margin-left:6px}",
     "}",
+
+    "@media (hover:none),(pointer:coarse){.peek{display:none}}",
 
     "@media (prefers-reduced-motion:reduce){*{transition:none!important}}",
   ].join("\n");
@@ -230,6 +233,7 @@
     var pill = document.createElement("nav");
     pill.className = "pill";
     pill.setAttribute("aria-label", "Versions of this site");
+    pill.setAttribute("aria-expanded", "false");
 
     var here = location.pathname.match(/\/archive\/([^/]+)\//);
     var currentId = here ? here[1] : null;
@@ -243,6 +247,7 @@
       a.href = href;
       a.title = era.label + " · " + span(era);
       a.setAttribute("aria-controls", peek.id);
+      a.setAttribute("aria-label", era.label + ", " + span(era));
 
       var dot = document.createElement("span");
       dot.className = "dot";
@@ -303,6 +308,14 @@
     img.addEventListener("error", function () { card.classList.add("no-shot"); });
     preview(current);
 
+    var expanded = false;
+    function setExpanded(state) {
+      expanded = state;
+      wrap.classList.toggle("expanded", state);
+      pill.setAttribute("aria-expanded", String(state));
+      if (!state) closeNow();
+    }
+
     var openTimer = 0;
     function closeNow() {
       clearTimeout(openTimer);
@@ -328,31 +341,52 @@
     items.forEach(function (i) {
       i.el.setAttribute("aria-expanded", "false");
       if (finePointer) {
-        i.el.addEventListener("focus", function () { preview(i); open(true); });
-        i.el.addEventListener("pointerenter", function () { preview(i); });
-      } else {
-        // A coarse-pointer tap selects first. Navigation only happens through the
-        // large preview card, preventing tiny adjacent links from firing by accident.
-        i.el.addEventListener("click", function (e) {
-          e.preventDefault();
-          if (wrap.classList.contains("open") && shown === i) closeNow();
-          else { preview(i); open(true); }
+        i.el.addEventListener("focus", function () {
+          // Pointer clicks commonly focus a link before dispatching click. Only
+          // keyboard-visible focus may expand here, otherwise the first pointer
+          // click would accidentally become a navigation click.
+          if (i.el.matches(":focus-visible")) {
+            setExpanded(true);
+            preview(i);
+            open(true);
+          }
+        });
+        i.el.addEventListener("pointerenter", function () {
+          if (expanded) {
+            preview(i);
+            open(true);
+          }
         });
       }
     });
 
+    // Whichever dot receives the first click only expands the timeline. Once
+    // expanded, the anchors retain their native one-click navigation behavior.
+    pill.addEventListener("click", function (e) {
+      if (!expanded) {
+        e.preventDefault();
+        setExpanded(true);
+      }
+    });
+
     if (finePointer) {
-      wrap.addEventListener("pointerenter", function () { open(true); });
       wrap.addEventListener("pointerleave", function () { open(false); });
     }
     wrap.addEventListener("focusout", function (e) {
       if (!wrap.contains(e.relatedTarget)) open(false);
     });
 
+    document.addEventListener("pointerdown", function (e) {
+      if (expanded && e.composedPath().indexOf(host) === -1) setExpanded(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setExpanded(false);
+    });
+
     // Touch browsers can synthesize hover while a fixed element moves under a
-    // scrolling finger. Coarse pointers never bind hover, and an active preview
-    // closes as soon as page scrolling begins.
-    if (!finePointer) window.addEventListener("scroll", closeNow, { passive: true });
+    // scrolling finger. Coarse pointers bind no hover/preview behavior, and a
+    // page scroll returns the control to its compact resting state.
+    if (!finePointer) window.addEventListener("scroll", function () { setExpanded(false); }, { passive: true });
 
     // Re-evaluate if a host changes theme after hydration or through its own UI.
     var syncTheme = function () { wrap.dataset.theme = pageTheme(); };

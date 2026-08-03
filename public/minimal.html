@@ -187,6 +187,23 @@
       cursor: help;
     }
 
+    .experience-history {
+      margin: 0 0 0.7rem;
+    }
+
+    .about .experience-history p {
+      margin-bottom: 0.15rem;
+    }
+
+    .experience-list {
+      margin: 0;
+      padding-left: 1.6rem;
+    }
+
+    .experience-list li {
+      padding: 0.08rem 0;
+    }
+
     /* One face per idea. Sizes are nudged per family because these are
        proportional faces dropped into a monospace line — matching font-size
        would not match apparent size. */
@@ -636,7 +653,10 @@
 
       if (past.length) {
         paragraphs.push(
-          `<p><strong>Previously:</strong> ${joinList(past.map(company))}.</p>`
+          `<div class="experience-history"><p><strong>Previously:</strong></p>` +
+          `<ul class="experience-list">` +
+          past.map((job) => `<li>${company(job)}.</li>`).join("") +
+          `</ul></div>`
         );
       }
 
