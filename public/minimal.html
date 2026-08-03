@@ -7,14 +7,12 @@
   <title>Aditya Kendre</title>
   <meta name="description" content="some info about me" />
   <link rel="icon" href="/assets/favicon.png" />
-  <!-- Accent faces for the two words in the lead line. `text=` subsets both
-       families to the alphabet, so they arrive in one sub-KB request. This is the
-       page's only external dependency; if it fails, display=swap leaves the words
-       in the body monospace and nothing else changes. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Caveat&family=Righteous&family=Zilla+Slab&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz%20&display=swap" />
+  <!-- The three accent faces are self-hosted and preloaded so their requests begin
+       during head parsing. The files are alphabet-only WOFF2 subsets because the
+       accents use ordinary Latin words. -->
+  <link rel="preload" href="/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/righteous-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/zilla-slab-latin.woff2" as="font" type="font/woff2" crossorigin />
   <!-- Theme follows the viewer's local clock: daylight hours light, otherwise
        dark. Inline and in <head> so the attribute is set before first paint —
        deferring this to the render pass would flash white on a night visit. -->
@@ -22,9 +20,39 @@
     (function () {
       var h = new Date().getHours();
       document.documentElement.dataset.theme = h >= 7 && h < 19 ? "light" : "dark";
+      // CSS only hides the page when JavaScript adds this class, so a no-script
+      // visit still gets the static artwork and explanatory fallback.
+      document.documentElement.classList.add("js", "page-pending");
     })();
   </script>
   <style>
+    @font-face {
+      font-family: "Caveat";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("/fonts/caveat-latin.woff2") format("woff2");
+      unicode-range: U+0020, U+0041-005A, U+0061-007A;
+    }
+
+    @font-face {
+      font-family: "Righteous";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("/fonts/righteous-latin.woff2") format("woff2");
+      unicode-range: U+0020, U+0041-005A, U+0061-007A;
+    }
+
+    @font-face {
+      font-family: "Zilla Slab";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("/fonts/zilla-slab-latin.woff2") format("woff2");
+      unicode-range: U+0020, U+0041-005A, U+0061-007A;
+    }
+
     :root {
       --bg: #ffffff;
       --fg: #111111;
@@ -83,6 +111,26 @@
       max-width: 640px;
       margin: 0 auto;
       padding: 4rem 1.5rem 1.5rem;
+    }
+
+    /* Keep the data-driven text, ASCII art and accent faces as one visual reveal.
+       visibility preserves layout and lets the browser resolve the font usage;
+       opacity supplies the short, unified fade once rendering is ready. */
+    .js.page-pending .page {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .js.page-ready .page {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 140ms ease-out;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .js.page-ready .page {
+        transition: none;
+      }
     }
 
     a {
@@ -407,6 +455,11 @@
     </div>
   </noscript>
 
+  <!-- Embedded by scripts/build-site.mjs in the generated public/index.html.
+       Keeping this as a marker leaves public/data.json as the single source of
+       truth; opening minimal.html directly still uses the fetch fallback below. -->
+  <!-- SITE_DATA -->
+
   <script>
     // Social links render as text, not icons. Keyed by the `icon` values in data.json.
     const SOCIAL_LABELS = {
@@ -659,17 +712,51 @@
         hero + rule + about + rule + work + (research ? rule + research : "");
     }
 
-    fetch("./data.json", { cache: "no-cache" })
+    const revealPage = () => {
+      document.documentElement.classList.remove("page-pending");
+      document.documentElement.classList.add("page-ready");
+    };
+
+    // Never leave the page invisible if a browser or font load behaves unusually.
+    const revealFallback = setTimeout(revealPage, 3000);
+
+    const embeddedData = document.getElementById("site-data");
+    const dataReady = embeddedData
+      ? Promise.resolve().then(() => JSON.parse(embeddedData.textContent))
+      : fetch("./data.json")
       .then((res) => {
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();
+      });
+
+    dataReady
+      .then((data) => {
+        render(data);
+
+        if (!document.fonts) return;
+
+        // Explicit loads make the dependency deterministic even before the next
+        // style/layout pass notices the newly inserted accent spans. `ready` then
+        // waits for the document's complete font set before the unified reveal.
+        return Promise.all([
+          document.fonts.load('400 18px "Caveat"', "learning"),
+          document.fonts.load('400 14px "Zilla Slab"', "working"),
+          document.fonts.load('400 14px "Righteous"', "cool"),
+        ])
+          .then(() => document.fonts.ready)
+          // Font failure should fall back to the body face, not replace otherwise
+          // valid page content with the data-loading error below.
+          .catch(() => undefined);
       })
-      .then(render)
       .catch((err) => {
         document.getElementById("root").innerHTML =
           `<p class="status">Couldn't load <code>data.json</code> (${esc(err.message)}). ` +
           `Serve this file over HTTP &mdash; e.g. <code>npx serve public</code> &mdash; ` +
           `rather than opening it straight from disk.</p>`;
+      })
+      .finally(() => {
+        clearTimeout(revealFallback);
+        revealPage();
       });
   </script>
 </body>

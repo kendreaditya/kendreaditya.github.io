@@ -60,7 +60,7 @@
       "label": "minimal",
       "date": "2026-07-25",
       "source": "public/minimal.html",
-      "blurb": "One monospace column that reads data.json in the browser, a clock-driven theme, and an Earthrise rendered in ASCII.",
+      "blurb": "One monospace column with build-embedded data, self-hosted accent faces, a clock-driven theme, and an Earthrise rendered in ASCII.",
       "archived": true
     }
   ]
