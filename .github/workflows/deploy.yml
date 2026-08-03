@@ -1,9 +1,9 @@
 # Publishes the static site in public/ to GitHub Pages.
 #
 # There is no framework build. `build-site.mjs` copies whichever era in
-# public/archive.json has the newest date to public/index.html, so the current
-# version of the site is chosen at deploy time from the manifest rather than
-# being hardcoded anywhere.
+# public/archive.json has the newest date to public/index.html and embeds data.json
+# when that source provides a marker. The current version is therefore chosen and
+# materialised at deploy time rather than being hardcoded anywhere.
 name: Deploy site to Pages
 
 on:
