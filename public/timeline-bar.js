@@ -102,13 +102,15 @@
     "  --shadow:0 12px 36px rgba(0,0,0,.56);",
     "}",
 
-    /* Preview rises out of the pill rather than sitting above it permanently. */
+    /* The preview is absolutely positioned so its invisible 300px card does not
+       inflate .wrap's hover box. It still belongs to .wrap in the DOM, so moving
+       between the pill and an open preview does not count as pointer leave. */
     ".peek{",
-    "  order:-1;pointer-events:none;margin-bottom:9px;",
-    "  opacity:0;transform:translateY(8px) scale(.96);transform-origin:50% 100%;",
+    "  position:absolute;left:50%;bottom:calc(100% + 9px);pointer-events:none;",
+    "  opacity:0;transform:translate(-50%,8px) scale(.96);transform-origin:50% 100%;",
     "  transition:opacity .22s cubic-bezier(.2,.8,.2,1),transform .22s cubic-bezier(.2,.8,.2,1);",
     "}",
-    ".wrap.open .peek{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}",
+    ".wrap.open .peek{opacity:1;transform:translate(-50%,0) scale(1);pointer-events:auto}",
     ".card{",
     "  position:relative;isolation:isolate;display:block;width:min(300px,78vw);overflow:hidden;",
     "  border-radius:16px;border:1px solid var(--edge);",
@@ -184,7 +186,7 @@
 
     "@media (hover:none),(pointer:coarse),(max-width:600px){",
     "  .wrap{bottom:max(8px,env(safe-area-inset-bottom));width:100%;padding:0 10px}",
-    "  .peek{margin-bottom:8px}",
+    "  .peek{bottom:calc(100% + 8px)}",
     "  .card{width:min(360px,calc(100vw - 20px));border-radius:18px}",
     "  .card .cap{min-height:48px;padding:10px 14px}",
     /* At rest the whole original-sized pill is one expansion target. The
