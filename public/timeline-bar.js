@@ -8,10 +8,10 @@
  * the URL, and marks it — so on kendre.me it rests on the live site, and inside
  * /archive/<id>/ it rests on that era.
  *
- * At rest it is a small centred glass pill showing only dots. Hovering expands
- * it, fades in the year labels, and raises a preview of whichever era is under
- * the pointer; clicking navigates there. Dragging scrubs, for when there are
- * more eras than fit.
+ * It starts as a compact row of dots. The first click expands the year labels;
+ * every labelled era is then a normal direct link. Precise pointers may hover an
+ * expanded era for a preview, while touch screens omit previews entirely so a
+ * link tap cannot be mistaken for a selection step.
  *
  * Everything lives in a shadow root. That matters because this is injected into
  * three historically different sites (a 2021 CRA bundle, a gitfolio page, a
@@ -50,6 +50,37 @@
     return b && b !== a ? a + "–" + b.slice(2) : a;
   }
 
+  // Computed colours are returned as rgb()/rgba() in current browsers. The bar
+  // is shared by white, charcoal, black and textured dark pages, so its material
+  // must follow the surface beneath it rather than the viewer's local clock.
+  function rgb(value) {
+    var n = String(value || "").match(/[\d.]+%?/g);
+    if (!n || n.length < 3) return null;
+    var channel = function (v) { return v.endsWith("%") ? parseFloat(v) * 2.55 : parseFloat(v); };
+    var alpha = n[3] == null ? 1 : n[3].endsWith("%") ? parseFloat(n[3]) / 100 : parseFloat(n[3]);
+    return [channel(n[0]), channel(n[1]), channel(n[2]), alpha];
+  }
+
+  function luminance(c) {
+    var linear = c.slice(0, 3).map(function (v) {
+      v /= 255;
+      return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+  }
+
+  function pageTheme() {
+    var surfaces = [document.body, document.documentElement];
+    for (var i = 0; i < surfaces.length; i++) {
+      var c = rgb(getComputedStyle(surfaces[i]).backgroundColor);
+      if (c && c[3] > 0.05) return luminance(c) > 0.34 ? "light" : "dark";
+    }
+    var scheme = getComputedStyle(document.documentElement).colorScheme;
+    if (scheme && scheme.indexOf("dark") !== -1) return "dark";
+    var foreground = rgb(getComputedStyle(document.body).color);
+    return foreground && luminance(foreground) > 0.5 ? "dark" : "light";
+  }
+
   var CSS = [
     ":host{all:initial}",
     "*{box-sizing:border-box;margin:0;padding:0}",
@@ -59,75 +90,115 @@
     "  z-index:2147483000;display:flex;flex-direction:column;align-items:center;",
     "  font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Monaco,Consolas,monospace;",
     "  font-size:11px;line-height:1;",
-    "  --fg:#111;--muted:#8a8a8f;--glass:rgba(255,255,255,.62);",
-    "  --edge:rgba(255,255,255,.7);--ring:rgba(0,0,0,.08);",
-    "  --shadow:0 8px 32px rgba(0,0,0,.14);--sheen:rgba(255,255,255,.75);",
+    "  --fg:#17171a;--muted:#62636a;",
+    "  --frost:rgba(246,246,248,.76);--frost-top:rgba(255,255,255,.9);--solid:#f2f2f4;",
+    "  --edge:rgba(255,255,255,.92);--inner:rgba(255,255,255,.66);--ring:rgba(25,25,30,.12);",
+    "  --shadow:0 10px 32px rgba(20,20,24,.18);",
     "}",
     ".wrap[data-theme=dark]{",
-    "  --fg:#f2f2f5;--muted:#83858d;--glass:rgba(18,20,26,.58);",
-    "  --edge:rgba(255,255,255,.12);--ring:rgba(0,0,0,.5);",
-    "  --shadow:0 8px 32px rgba(0,0,0,.5);--sheen:rgba(255,255,255,.10);",
+    "  --fg:#f5f5f7;--muted:#b5b6bd;",
+    "  --frost:rgba(34,36,43,.78);--frost-top:rgba(54,57,66,.86);--solid:#292b32;",
+    "  --edge:rgba(255,255,255,.24);--inner:rgba(255,255,255,.12);--ring:rgba(0,0,0,.72);",
+    "  --shadow:0 12px 36px rgba(0,0,0,.56);",
     "}",
 
-    /* Preview rises out of the pill rather than sitting above it permanently. */
+    /* The preview is absolutely positioned so its invisible 300px card does not
+       inflate .wrap's hover box. It still belongs to .wrap in the DOM, so moving
+       between the pill and an open preview does not count as pointer leave. */
     ".peek{",
-    "  pointer-events:none;margin-bottom:9px;",
-    "  opacity:0;transform:translateY(8px) scale(.96);transform-origin:50% 100%;",
+    "  position:absolute;left:50%;bottom:calc(100% + 9px);pointer-events:none;",
+    "  opacity:0;transform:translate(-50%,8px) scale(.96);transform-origin:50% 100%;",
     "  transition:opacity .22s cubic-bezier(.2,.8,.2,1),transform .22s cubic-bezier(.2,.8,.2,1);",
     "}",
-    ".wrap.open .peek{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}",
+    ".wrap.open .peek{opacity:1;transform:translate(-50%,0) scale(1);pointer-events:auto}",
     ".card{",
-    "  display:block;width:min(300px,78vw);overflow:hidden;",
-    "  border-radius:14px;border:1px solid var(--edge);",
-    "  background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(180%);",
-    "  backdrop-filter:blur(22px) saturate(180%);",
-    "  box-shadow:var(--shadow),0 0 0 1px var(--ring),inset 0 1px 0 var(--sheen);",
+    "  position:relative;isolation:isolate;display:block;width:min(300px,78vw);overflow:hidden;",
+    "  border-radius:16px;border:1px solid var(--edge);",
+    "  background:linear-gradient(180deg,var(--frost-top),var(--frost));",
+    "  -webkit-backdrop-filter:blur(22px) saturate(125%) contrast(105%);",
+    "  backdrop-filter:blur(22px) saturate(125%) contrast(105%);",
+    "  box-shadow:var(--shadow),0 0 0 1px var(--ring),inset 0 1px 0 var(--inner);",
     "  text-decoration:none;color:var(--fg);",
     "}",
-    ".card img{display:block;width:100%;height:auto}",
-    ".card .cap{display:flex;gap:6px;align-items:baseline;padding:7px 10px;",
-    "  border-top:1px solid var(--edge);white-space:nowrap;overflow:hidden}",
+    ".card .visual{position:relative;aspect-ratio:4/3;overflow:hidden;",
+    "  background:var(--solid)}",
+    ".card img{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover}",
+    ".card .shot-fallback{position:absolute;z-index:0;inset:0;display:flex;align-items:center;justify-content:center;",
+    "  color:var(--muted);font-weight:700;letter-spacing:.02em}",
+    ".card:not(.no-shot) .shot-fallback{display:none}",
+    ".card.no-shot img{display:none}",
+    ".card .cap{display:flex;gap:6px;align-items:center;min-height:36px;padding:8px 11px;",
+    "  position:relative;z-index:1;border-top:1px solid var(--edge);white-space:nowrap;overflow:hidden}",
     ".card .cap b{font-weight:700}",
     ".card .cap span{color:var(--muted);font-size:10px}",
+    ".card .cap .go{margin-left:auto;color:var(--fg);font-weight:700}",
 
-    /* The pill itself: barely there until you reach for it. */
+    /* The pill starts as a compact row of dots. Its first click reveals labels;
+       only subsequent clicks follow an era link. */
     ".pill{",
-    "  display:flex;align-items:center;max-width:min(420px,88vw);",
+    "  position:relative;isolation:isolate;display:flex;align-items:center;max-width:min(420px,88vw);",
     "  padding:7px 9px;border-radius:999px;",
-    "  background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(180%);",
-    "  backdrop-filter:blur(22px) saturate(180%);",
+    "  background:linear-gradient(180deg,var(--frost-top),var(--frost));",
+    "  -webkit-backdrop-filter:blur(22px) saturate(125%) contrast(105%);",
+    "  backdrop-filter:blur(22px) saturate(125%) contrast(105%);",
     "  border:1px solid var(--edge);",
-    "  box-shadow:var(--shadow),0 0 0 1px var(--ring),inset 0 1px 0 var(--sheen);",
-    "  overflow-x:auto;scrollbar-width:none;cursor:grab;",
-    "  opacity:.4;transition:opacity .26s ease,box-shadow .26s ease;",
+    "  box-shadow:var(--shadow),0 0 0 1px var(--ring),inset 0 1px 0 var(--inner);",
+    "  overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain;",
+    "  cursor:pointer;transition:box-shadow .26s ease,max-width .3s cubic-bezier(.2,.8,.2,1),",
+    "    padding .3s cubic-bezier(.2,.8,.2,1);",
     "}",
     ".pill::-webkit-scrollbar{display:none}",
-    ".pill.dragging{cursor:grabbing}",
-    ".wrap.open .pill{opacity:1}",
 
     ".era{",
     "  flex:0 0 auto;display:flex;align-items:center;gap:0;",
-    "  padding:3px 5px;border-radius:999px;",
+    "  justify-content:center;padding:3px 5px;border-radius:999px;",
     "  color:var(--muted);text-decoration:none;white-space:nowrap;",
     "  background:none;border:0;font:inherit;cursor:pointer;",
-    "  transition:color .2s ease;",
+    "  transition:color .2s ease,min-width .3s cubic-bezier(.2,.8,.2,1),",
+    "    min-height .3s cubic-bezier(.2,.8,.2,1),padding .3s cubic-bezier(.2,.8,.2,1);",
     "}",
+    ".wrap.expanded .era{min-width:28px;min-height:28px;padding:3px 7px}",
     ".era .dot{",
     "  width:6px;height:6px;border-radius:50%;background:currentColor;flex:0 0 auto;",
     "  transition:transform .24s cubic-bezier(.2,.8,.2,1),background .24s ease;",
     "}",
-    /* Labels are collapsed to zero width at rest, so the pill grows into them. */
     ".era .yr{",
-    "  display:inline-block;overflow:hidden;max-width:0;opacity:0;",
+    "  display:inline-block;max-width:0;opacity:0;margin-left:0;overflow:hidden;",
     "  font-variant-numeric:tabular-nums;",
-    "  transition:max-width .3s cubic-bezier(.2,.8,.2,1),opacity .2s ease,margin .3s cubic-bezier(.2,.8,.2,1);",
+    "  transition:max-width .3s cubic-bezier(.2,.8,.2,1),opacity .18s ease,margin .3s ease;",
     "}",
-    ".wrap.open .era .yr{max-width:5.5em;opacity:1;margin-left:5px}",
+    ".wrap.expanded .era .yr{max-width:5.5em;opacity:1;margin-left:5px}",
     ".era[aria-current=true]{color:var(--fg);font-weight:700}",
     ".era[aria-current=true] .dot{transform:scale(1.45)}",
+    ".era[aria-expanded=true]{color:var(--fg);background:rgba(127,127,127,.14)}",
     ".era:hover,.era:focus-visible{color:var(--fg)}",
     ".era.peeking .dot{transform:scale(1.45)}",
     ".era:focus-visible{outline:2px solid var(--fg);outline-offset:2px}",
+
+    "@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){",
+    "  .card,.pill{background:var(--solid)}",
+    "}",
+
+    "@media (prefers-reduced-transparency:reduce),(prefers-contrast:more){",
+    "  .card,.pill{background:var(--solid);-webkit-backdrop-filter:none;backdrop-filter:none;",
+    "    border-color:var(--fg);box-shadow:0 8px 24px var(--ring)}",
+    "}",
+
+    "@media (hover:none),(pointer:coarse),(max-width:600px){",
+    "  .wrap{bottom:max(8px,env(safe-area-inset-bottom));width:100%;padding:0 10px}",
+    "  .peek{bottom:calc(100% + 8px)}",
+    "  .card{width:min(360px,calc(100vw - 20px));border-radius:18px}",
+    "  .card .cap{min-height:48px;padding:10px 14px}",
+    /* At rest the whole original-sized pill is one expansion target. The
+       individual eras become 44px targets only when they become direct links. */
+    "  .pill{max-width:calc(100vw - 20px);touch-action:pan-x;scroll-snap-type:x proximity}",
+    "  .era{scroll-snap-align:center}",
+    "  .wrap.expanded .pill{padding:3px 4px}",
+    "  .wrap.expanded .era{min-width:44px;min-height:44px;padding:0 10px}",
+    "  .wrap.expanded .era .yr{margin-left:6px}",
+    "}",
+
+    "@media (hover:none),(pointer:coarse){.peek{display:none}}",
 
     "@media (prefers-reduced-motion:reduce){*{transition:none!important}}",
   ].join("\n");
@@ -142,24 +213,35 @@
 
     var wrap = document.createElement("div");
     wrap.className = "wrap";
-    var hour = new Date().getHours();
-    wrap.dataset.theme = hour >= 7 && hour < 19 ? "light" : "dark";
+    wrap.dataset.theme = pageTheme();
 
     var peek = document.createElement("div");
     peek.className = "peek";
+    peek.id = "timeline-preview";
+    peek.setAttribute("aria-hidden", "true");
     var card = document.createElement("a");
     card.className = "card";
+    card.tabIndex = -1;
+    var visual = document.createElement("div");
+    visual.className = "visual";
     var img = document.createElement("img");
+    var shotFallback = document.createElement("div");
+    shotFallback.className = "shot-fallback";
     var cap = document.createElement("div");
     cap.className = "cap";
-    card.appendChild(img);
+    var go = document.createElement("span");
+    go.className = "go";
+    go.textContent = "open →";
+    visual.appendChild(img);
+    visual.appendChild(shotFallback);
+    card.appendChild(visual);
     card.appendChild(cap);
     peek.appendChild(card);
 
-    var pill = document.createElement("div");
+    var pill = document.createElement("nav");
     pill.className = "pill";
-    pill.setAttribute("role", "list");
     pill.setAttribute("aria-label", "Versions of this site");
+    pill.setAttribute("aria-expanded", "false");
 
     var here = location.pathname.match(/\/archive\/([^/]+)\//);
     var currentId = here ? here[1] : null;
@@ -171,8 +253,9 @@
       var a = document.createElement("a");
       a.className = "era";
       a.href = href;
-      a.setAttribute("role", "listitem");
       a.title = era.label + " · " + span(era);
+      a.setAttribute("aria-controls", peek.id);
+      a.setAttribute("aria-label", era.label + ", " + span(era));
 
       var dot = document.createElement("span");
       dot.className = "dot";
@@ -186,15 +269,16 @@
       return { era: era, el: a, href: href };
     });
 
-    wrap.appendChild(peek);
     wrap.appendChild(pill);
+    wrap.appendChild(peek);
     root.appendChild(style);
     root.appendChild(wrap);
     document.body.appendChild(host);
 
     // Keep the host page's own content clear of the floating pill.
+    var finePointer = !window.matchMedia || window.matchMedia("(hover:hover) and (pointer:fine)").matches;
     var prev = parseInt(getComputedStyle(document.body).paddingBottom, 10) || 0;
-    document.body.style.paddingBottom = prev + CLEARANCE + "px";
+    document.body.style.paddingBottom = prev + (finePointer ? CLEARANCE : 76) + "px";
 
     // The page's own era stays marked; hovering only changes what is PREVIEWED.
     var current =
@@ -208,8 +292,15 @@
       if (shown) shown.el.classList.remove("peeking");
       shown = item;
       item.el.classList.add("peeking");
-      img.src = "/archive/" + item.era.id + "/preview.png";
+      // The live era is served at / and has no frozen archive directory yet.
+      // Show a labelled glass fallback while a screenshot loads, and retain it
+      // if an old archive is ever missing its preview instead of showing a broken
+      // image icon.
+      card.classList.add("no-shot");
+      shotFallback.textContent = item.era.label;
       img.alt = item.era.label;
+      img.src = item.era.preview ||
+        (item.era.newest ? "/preview.svg" : "/archive/" + item.era.id + "/preview.png");
       cap.innerHTML = "";
       var b = document.createElement("b");
       b.textContent = item.era.label;
@@ -217,58 +308,105 @@
       s.textContent = span(item.era);
       cap.appendChild(b);
       cap.appendChild(s);
+      cap.appendChild(go);
       card.href = item.href;
+      card.setAttribute("aria-label", "Open " + item.era.label + ", " + span(item.era));
     }
+    img.addEventListener("load", function () { card.classList.remove("no-shot"); });
+    img.addEventListener("error", function () { card.classList.add("no-shot"); });
     preview(current);
 
-    items.forEach(function (i) {
-      i.el.addEventListener("pointerenter", function () { preview(i); });
-      i.el.addEventListener("focus", function () { open(true); preview(i); });
-    });
+    var expanded = false;
+    function setExpanded(state) {
+      expanded = state;
+      wrap.classList.toggle("expanded", state);
+      pill.setAttribute("aria-expanded", String(state));
+      if (!state) closeNow();
+    }
 
     var openTimer = 0;
+    function closeNow() {
+      clearTimeout(openTimer);
+      wrap.classList.remove("open");
+      peek.setAttribute("aria-hidden", "true");
+      card.tabIndex = -1;
+      items.forEach(function (i) { i.el.setAttribute("aria-expanded", "false"); });
+      preview(current);
+    }
     function open(state) {
       clearTimeout(openTimer);
       if (state) {
         wrap.classList.add("open");
+        peek.setAttribute("aria-hidden", "false");
+        card.tabIndex = 0;
+        items.forEach(function (i) { i.el.setAttribute("aria-expanded", String(i === shown)); });
       } else {
         // Brief grace period so crossing the gap to the card doesn't dismiss it.
-        openTimer = setTimeout(function () {
-          wrap.classList.remove("open");
-          preview(current);
-        }, 160);
+        openTimer = setTimeout(closeNow, 160);
       }
     }
-    wrap.addEventListener("pointerenter", function () { open(true); });
-    wrap.addEventListener("pointerleave", function () { if (!down) open(false); });
-    wrap.addEventListener("focusout", function (e) {
-      if (!wrap.contains(e.relatedTarget)) open(false);
+
+    items.forEach(function (i) {
+      i.el.setAttribute("aria-expanded", "false");
+      if (finePointer) {
+        i.el.addEventListener("focus", function () {
+          // Pointer clicks commonly focus a link before dispatching click. Only
+          // keyboard-visible focus may expand here, otherwise the first pointer
+          // click would accidentally become a navigation click.
+          if (i.el.matches(":focus-visible")) {
+            setExpanded(true);
+            preview(i);
+            open(true);
+          }
+        });
+        i.el.addEventListener("pointerenter", function () {
+          if (expanded) {
+            preview(i);
+            open(true);
+          }
+        });
+      }
     });
 
-    // Drag to scrub, for when there are more eras than fit the pill. Only
-    // suppress the click if the pointer actually moved, so a tap still navigates.
-    var down = false, startX = 0, startScroll = 0, moved = 0;
-    pill.addEventListener("pointerdown", function (e) {
-      down = true; moved = 0;
-      startX = e.clientX;
-      startScroll = pill.scrollLeft;
-      pill.classList.add("dragging");
-      open(true);
-    });
-    window.addEventListener("pointermove", function (e) {
-      if (!down) return;
-      var dx = e.clientX - startX;
-      moved = Math.max(moved, Math.abs(dx));
-      pill.scrollLeft = startScroll - dx;
-    });
-    window.addEventListener("pointerup", function () {
-      if (!down) return;
-      down = false;
-      pill.classList.remove("dragging");
-    });
+    // Touch has no hover, so its first tap only expands the timeline. A precise
+    // pointer expands on hover before click, leaving every desktop click as
+    // native one-click navigation.
     pill.addEventListener("click", function (e) {
-      if (moved > 4) { e.preventDefault(); e.stopPropagation(); }
-    }, true);
+      if (!expanded) {
+        e.preventDefault();
+        setExpanded(true);
+      }
+    });
+
+    if (finePointer) {
+      wrap.addEventListener("pointerenter", function () { setExpanded(true); });
+      wrap.addEventListener("pointerleave", function () { setExpanded(false); });
+    }
+    wrap.addEventListener("focusout", function (e) {
+      if (!wrap.contains(e.relatedTarget)) setExpanded(false);
+    });
+
+    document.addEventListener("pointerdown", function (e) {
+      if (expanded && e.composedPath().indexOf(host) === -1) setExpanded(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setExpanded(false);
+    });
+
+    // Touch browsers can synthesize hover while a fixed element moves under a
+    // scrolling finger. Coarse pointers bind no hover/preview behavior, and a
+    // page scroll returns the control to its compact resting state.
+    if (!finePointer) window.addEventListener("scroll", function () { setExpanded(false); }, { passive: true });
+
+    // Re-evaluate if a host changes theme after hydration or through its own UI.
+    var syncTheme = function () { wrap.dataset.theme = pageTheme(); };
+    requestAnimationFrame(syncTheme);
+    setTimeout(syncTheme, 250);
+    if (window.MutationObserver) {
+      var observer = new MutationObserver(syncTheme);
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "style", "data-theme"] });
+      observer.observe(document.body, { attributes: true, attributeFilter: ["class", "style"] });
+    }
   }
 
   function init() {

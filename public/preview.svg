@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450" role="img" aria-labelledby="title desc">
+  <title id="title">Minimal personal site preview</title>
+  <desc id="desc">A miniature preview of Aditya Kendre's monospace personal site and Earthrise ASCII artwork.</desc>
+  <rect width="600" height="450" fill="#fff"/>
+  <g fill="#111" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+    <text x="72" y="52" font-size="20" font-weight="700">Aditya Kendre</text>
+    <text x="72" y="72" font-size="8">→ github   |   → scholar   |   → email   |   → linkedin</text>
+
+    <path d="M72 91H528" stroke="#c8c8c8" stroke-width="1" stroke-dasharray="6 5"/>
+
+    <text x="72" y="113" font-size="8.5">I like learning and working on cool things.</text>
+    <text x="72" y="132" font-size="8.5">Currently: building software and exploring intelligent systems.</text>
+    <text x="72" y="151" font-size="8.5">Previously: MLE, SWE, and undergraduate research.</text>
+    <text x="72" y="170" font-size="8.5">Please send me an email. I'd love to hear from you.</text>
+
+    <path d="M72 190H528" stroke="#c8c8c8" stroke-width="1" stroke-dasharray="6 5"/>
+
+    <text x="72" y="213" font-size="8.5" font-weight="700">Some things I've made:</text>
+    <text x="72" y="232" font-size="8.5">- semant             (tools for thinking)</text>
+    <text x="72" y="250" font-size="8.5">- gaudiyakirtan      (music and community)</text>
+    <text x="72" y="268" font-size="8.5">- configuration      (a personal computing setup)</text>
+
+    <text x="382" y="302" font-size="7">[earth]</text>
+    <text x="112" y="345" font-size="7">[moon]</text>
+  </g>
+
+  <g fill="#3a3a3a" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="4.1" xml:space="preserve">
+    <text x="72" y="316">                                                                       .:::::</text>
+    <text x="72" y="321">                                                                    :+*%%@@@@@%#*=</text>
+    <text x="72" y="326">                                                                  =#@@@@@@@@@@@@@@%*:</text>
+    <text x="72" y="331">                                                                :#@@@@@%#*%%%%%@@@@@%+</text>
+    <text x="72" y="336">                                                               =@@#*=-:.       -+%@@@@#</text>
+    <text x="72" y="354">                        .:::=======+++===--=====+***+******+-::</text>
+    <text x="72" y="359"> .===--=-:.  ..::  ..-===+***##*###%%%%%%@@@@@@@@@@%@@@@@%@@@@%%#%*+#%*#***#***++=--::::.</text>
+    <text x="72" y="364">**#%#*%%%%##@@@@@@@@%%%#%%%#*+**+==+****++*****####%@@@@@%@@@%%@%##%##%#####%####*##*##%#</text>
+    <text x="72" y="369">@@@@@%%%@%%@@%@@@@@@@@@@@@@%%###%#****####**+*+==++++++*#++*===-=+=+***++*++--++***###****</text>
+    <text x="72" y="374">%%%##%%%%%#%%%%%%#%@%%%%%%@%%@@%#%@%#####*+*+-=+-=====:.-++##*+==++---=+*+======+==-::::---</text>
+    <text x="72" y="379">**#**#*+*****=++*#*++#%%%%%%%@@@@@@@@@%%%%%@%%####%###%##########%%##*++***+*++*++=+++*+=+</text>
+    <text x="72" y="384">+%@%%###**#+-:.::::.   --=+#***##%%####@@@@@%%%%@%%@@@@%%#%%%%%%%%%%%######***+++===***++++</text>
+    <text x="72" y="389">:=++%%#%*+++===-=::::-====--===+*#*=+#*++*#****#########+++==-======-:-======-:--:=++***+++</text>
+    <text x="72" y="394">====***+++++++*+*=-+**+++++==*##=-=+#%####*+++=+**%######*#*###%%#*+=-==++++++++**+=-===--=</text>
+  </g>
+
+  <text x="72" y="420" fill="#888" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="7">
+    earth, seen from the moon — tobyord.com/earth
+  </text>
+</svg>
