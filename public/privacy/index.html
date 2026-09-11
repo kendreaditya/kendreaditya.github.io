@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy - gog CLI</title>
+  <meta name="description" content="Privacy policy for Aditya Kendre's personal gog CLI integration." />
+  <link rel="icon" href="/assets/favicon.png" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #666666;
+      --rule: #c8c8c8;
+      color-scheme: light;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0a0c11;
+        --fg: #ececef;
+        --muted: #a0a3aa;
+        --rule: #2b2e36;
+        color-scheme: dark;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco,
+        "Cascadia Mono", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.25;
+    }
+
+    h1 {
+      margin: 0 0 0.35rem;
+      font-size: 2rem;
+    }
+
+    h2 {
+      margin: 2rem 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    p,
+    ul {
+      margin: 0 0 1rem;
+    }
+
+    ul {
+      padding-left: 1.4rem;
+    }
+
+    a {
+      color: inherit;
+      text-underline-offset: 2px;
+    }
+
+    .updated,
+    .note {
+      color: var(--muted);
+    }
+
+    .rule {
+      height: 1px;
+      margin: 1.5rem 0;
+      border: 0;
+      background-image: repeating-linear-gradient(to right,
+          var(--rule) 0 6px,
+          transparent 6px 11px);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <p><a href="/">← aditya kendre</a></p>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: September 11, 2026</p>
+    <hr class="rule" />
+
+    <p>
+      This policy covers the personal <strong>gog CLI</strong> Google OAuth
+      integration operated by Aditya Kendre. It is used only by Aditya Kendre
+      to access his own Google Workspace data from his local computer.
+    </p>
+
+    <h2>Google data the integration accesses</h2>
+    <p>
+      The integration may access Gmail, Google Calendar, Google Drive, Google
+      Docs, Google Sheets, and Google Contacts when an authenticated command is
+      run.
+    </p>
+
+    <h2>How data is used</h2>
+    <p>
+      Google data is used only to perform the command requested by the account
+      owner, such as reading an email, listing calendar events, or accessing a
+      document. It is not used for advertising, profiling, or training models.
+    </p>
+    <p>
+      Use and transfer of information received from Google APIs adheres to the
+      <a href="https://developers.google.com/terms/api-services-user-data-policy">
+        Google API Services User Data Policy
+      </a>, including its Limited Use requirements.
+    </p>
+
+    <h2>Storage and sharing</h2>
+    <ul>
+      <li>OAuth credentials are stored locally in the account owner's macOS Keychain.</li>
+      <li>Google data is not sold or shared with third parties.</li>
+      <li>No Google data is stored on this website.</li>
+    </ul>
+
+    <h2>Security and retention</h2>
+    <p>
+      Access is protected by Google's OAuth 2.0 authorization flow. Data is
+      retained only when the account owner explicitly saves command output.
+      OAuth access can be revoked at any time through the Google Account
+      security settings.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions about this policy can be sent to
+      <a href="mailto:kendreaditya@gmail.com">kendreaditya@gmail.com</a>.
+    </p>
+
+    <p class="note">
+      This is a private, single-user integration and is not offered as a public
+      application or service.
+    </p>
+  </main>
+</body>
+
+</html>
